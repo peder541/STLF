@@ -1,0 +1,213 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*html,body {
+	margin: 0;
+	padding: 0;
+}*/
+body {
+	line-height: 180%;
+	font-family: Calibri;
+}
+
+button {
+	outline: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.activity, .concept {
+	display: block;
+	width: 100%;
+	background-color: transparent;/*#bef;*/
+	border: 0;
+	border-bottom: 1px solid #aaa;
+	margin: 2px;
+	/*border-radius: 4px;*/
+	text-align: left;
+	height: 3em;/*2.5em;*/
+	cursor: pointer;
+	line-height: 1em;
+}
+.activity.hover, .concept.hover {
+	background-color: #bbf6ff;/*#9ef;*/
+}
+.activity.active, .concept.active {
+	background-color: #7ef;
+}
+#home,.info,#sort,#cancel,#ok {
+	display: none;	
+}
+/*#facilitation:before {
+	content: 'Facilitation';
+	text-decoration: underline;
+	position: relative;
+	left: -40px;
+}*/
+#facilitation {
+	margin-left: 0;
+}
+label.info {
+	position: absolute;
+	margin-left: 0;
+	font-size: 0.9em;
+	font-family: Corbel;
+}
+label.info[for=facilitation] {
+	position: relative;
+}
+.info {
+	margin-left: 90px;
+}
+#outcomes {
+	padding-left: 0;
+	list-style-position: inside;
+	/**/
+	list-style: none;
+}
+#outcomes > li:after {
+	content: ',';
+}
+#outcomes > li:last-of-type:after {
+	content: '';	
+}
+#facilitation > li {
+	margin-bottom: 1em;
+}
+/**//**
+}
+ul li:only-of-type {
+	list-style: none;
+}
+/**/
+#name {
+	margin-left: 0;
+	text-align: center;
+}
+body.front {
+	background-color: #bef;
+}
+h1 {
+	line-height: 120%;
+	text-align: center;
+}
+#bluebar,
+#recommend, #contribute {
+	background-color: #00f;
+	margin: -8px -8px 4px;
+	box-shadow: 0px 0px 3px #000;
+}
+#bluebar > button,
+#recommend > button, #contribute > button {
+	border-style: solid;
+	border-width: 0 1px 0 0;
+	border-color: #00c;
+	background-color: transparent;
+	color: #eee;
+	width: 5em;
+	height: 3em;
+	cursor: pointer;
+}
+#bluebar > button.hover,
+#recommend > button.hover, #contribute > button.hover {
+	background-color: rgba(0,0,0,0.15);
+}
+#bluebar > button.active,
+#recommend > button.active, #contribute > button.active {
+	background-color: rgba(0,0,0,0.3);
+}
+.front > #bluebar,
+.front #recommend, .front > #contribute {
+	box-shadow: none;
+	width: 90%;
+	margin: 50px auto;	
+	border-radius: 8px;
+	max-width: 600px;
+}
+.front > #bluebar > button,
+.front > #recommend > button, .front > #contribute > button {
+	width: 100%;
+	border-radius: 8px;
+	border-width: 1px;
+}
+/* Right Buttons */
+#bluebar > #sort, #bluebar > #ok, .right {
+	float: right;
+	border-width: 0 0 0 1px;	
+}
+#sort {
+	background-image: url('../img/gear24.png');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#yellow {
+	background-color: #FFC100;
+	box-shadow: 0 0 3px #FFC100;
+	border-color: darkgoldenrod;
+	margin: -8px;
+	padding: 8px;	
+}
+
+.catalog #bluebar > #filter {
+	position: absolute;
+	border: 0;
+	width: calc(100% - 10em);
+	display: inline-block;
+}
+#filter {
+	display: none;
+}
+
+.concept.checked:after {
+	content: '\2713';
+	color: green;
+}
+/**
+.concept.unchecked:after {
+	content: '\2717';
+	color: red;
+}
+/**/
+.concept:after {
+	float: right;
+	width: 20px;
+	text-align: center;	
+	font-size: 1.5em;
+}
+/*
+.concept {
+	font-size: 1em;
+	font-family: Corbel;
+}
+.concept.checked.hover {
+	background-color: #fdd;
+}
+.concept.checked.active {
+	background-color: #fbb;
+}
+.concept.unchecked.hover {
+	background-color: #dfd;
+}
+.concept.unchecked.active {
+	background-color: #bfb;
+}
+*/
+
+#recommend {
+	background-color: #80c;
+}
+#contribute {
+	background-color: #0c4;
+}
+.front > #recommend, .front > #contribute {
+	display: block;
+}
+.front > #recommend > button {
+	border-color: #60a;
+}
+.front > #contribute > button {
+	border-color: #0a2;
+}
+#recommend, #contribute {
+	display: none;
+}
