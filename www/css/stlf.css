@@ -15,7 +15,7 @@ button {
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-.activity, .concept {
+.activity, .concept, .song {
 	display: block;
 	width: 100%;
 	background-color: transparent;/*#bef;*/
@@ -28,10 +28,10 @@ button {
 	cursor: pointer;
 	line-height: 1em;
 }
-.activity.hover, .concept.hover {
+.activity.hover, .concept.hover, .song.hover {
 	background-color: #bbf6ff;/*#9ef;*/
 }
-.activity.active, .concept.active {
+.activity.active, .concept.active, .song.active {
 	background-color: #7ef;
 }
 #home,.info,#sort,#cancel,#ok {
@@ -43,8 +43,12 @@ button {
 	position: relative;
 	left: -40px;
 }*/
-#facilitation {
+#facilitation, #debrief, #alterations, #songs {
 	margin-left: 0;
+	margin-bottom: 2em;
+}
+#alterations, #songs {
+	list-style: none;
 }
 label.info {
 	position: absolute;
@@ -52,7 +56,7 @@ label.info {
 	font-size: 0.9em;
 	font-family: Corbel;
 }
-label.info[for=facilitation] {
+label.info[for=facilitation], label.info[for=debrief], label.info[for=alterations], label.info[for=songs] {
 	position: relative;
 }
 .info {
@@ -70,8 +74,12 @@ label.info[for=facilitation] {
 #outcomes > li:last-of-type:after {
 	content: '';	
 }
-#facilitation > li {
+#facilitation > li, #debrief > li, #alterations > li {
 	margin-bottom: 1em;
+}
+#songs > li {
+	margin: 0;
+	margin-right: 2em;	
 }
 /**//**
 }
@@ -85,10 +93,21 @@ ul li:only-of-type {
 }
 body.front {
 	background-color: #bef;
+/**/
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+/**/
 }
 h1 {
 	line-height: 120%;
 	text-align: center;
+/**/
+	position: relative;
+	top: 15%;
+/**/
 }
 #bluebar,
 #recommend, #contribute {
@@ -122,6 +141,10 @@ h1 {
 	margin: 50px auto;	
 	border-radius: 8px;
 	max-width: 600px;
+/**/
+	position: relative;
+	top: 30%;
+/**/
 }
 .front > #bluebar > button,
 .front > #recommend > button, .front > #contribute > button {
@@ -135,7 +158,7 @@ h1 {
 	border-width: 0 0 0 1px;	
 }
 #sort {
-	background-image: url('../img/gear24.png');
+	background-image: url('gear24.png');
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -201,6 +224,9 @@ h1 {
 }
 .front > #recommend, .front > #contribute {
 	display: block;
+/**/
+	display: none;
+/**/
 }
 .front > #recommend > button {
 	border-color: #60a;
@@ -210,4 +236,7 @@ h1 {
 }
 #recommend, #contribute {
 	display: none;
+}
+#lyrics {
+	margin-left: 10px;
 }

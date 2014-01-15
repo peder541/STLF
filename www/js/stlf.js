@@ -103,8 +103,8 @@ function appHome() {
 function show(name) {
 	$('body').attr('class','detail');
 	$('.activity').remove();
-	$('#home,#sort').hide();
 	$('#browse,.info').show();
+	$('#home,#sort,.info2').hide();
 	$(window).scrollTop(0);
 	var activity = stlfFilter('name',name)[0];
 		
@@ -118,6 +118,56 @@ function show(name) {
 	$('#goal').html(activity.goal);
 	$('#facilitation').empty();
 	for (var j in activity.facilitation) $('#facilitation').append('<li>' + activity.facilitation[j] + '</li>');
+	if (activity.debrief) {
+		$('#debrief').empty();
+		for (var k in activity.debrief) $('#debrief').append('<li>' + activity.debrief[k] + '</li>');
+		$('#debrief,[for="debrief"]').show();
+	}
+	if (activity.alterations) {
+		$('#alterations').empty();
+		for (var k in activity.alterations) $('#alterations').append('<li>' + activity.alterations[k] + '</li>');
+		$('#alterations,[for="alterations"]').show();
+	}
+	if (activity.songs) {
+		$('#songs').empty();
+		var songs = Object.keys(activity.songs).sort();
+		for (var k in songs) $('#songs').append('<li><button class="song">' + songs[k] + '</button></li>');
+		$('#songs,[for="songs"]').show();
+	}
+}
+
+function song_info(song) {
+	var activity = stlfFilter('name','Repeat-After-Me Songs')[0];
+	var data = activity.songs[song];
+	$('.info').hide();
+	$('#name').html(song).show();
+	$('#browse').html('Songs');
+	$('#name').after('<div id="lyrics"></div>');
+	$('body').attr('class','song_info');
+	for (var l in data) $('#lyrics').append(data[l] + '<br>');
+	$(window).scrollTop(0);
+	$('#browse').one('click',function(event) {
+		$('#browse').html('Browse');
+		$('#lyrics').remove();
+		show('Repeat-After-Me Songs');
+		$(window).scrollTop($('#songs').offset().top);
+		return false;
+	});
+}
+
+function change_song(direction) {
+	var activity = stlfFilter('name','Repeat-After-Me Songs')[0];
+	var songs = Object.keys(activity.songs).sort();
+	var index = songs.indexOf($('#name').html()) + direction;
+	if (index == songs.length) index = 0;
+	if (index < 0) index = songs.length - 1;
+	var song = songs[index];
+	var data = activity.songs[song];
+	$('#name').html(song).show();
+	$('#browse').html('Songs');
+	$('#lyrics').empty();
+	$('body').attr('class','song_info');
+	for (var l in data) $('#lyrics').append(data[l] + '<br>');
 }
 
 $(document).ready(function() {
@@ -161,6 +211,7 @@ $(document).ready(function() {
 			default:
 				var $this = $(this);
 				if ($this.hasClass('activity')) show(this.innerHTML);
+				if ($this.hasClass('song')) song_info(this.innerHTML);
 				break;
 		}
 	})
@@ -185,7 +236,7 @@ $(document).ready(function() {
 	})
 	.on('mouseup',function(event) {
 		$('button').removeClass('active');
-	})
+	});
 	$('body').on('keydown swipe',function(event) { 
 		var appScreen = $('body').attr('class');
 		if (appScreen == 'front') return true;
@@ -199,6 +250,7 @@ $(document).ready(function() {
 		else if (event.which == 37 || event.which == 39) direction = event.which - 38;
 		if (direction) {
 			if (appScreen == 'detail') move(direction);
+			else if (appScreen == 'song_info') change_song(direction);
 			//else change_concept(direction);
 		}
 	});
