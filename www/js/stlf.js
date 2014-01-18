@@ -1,9 +1,14 @@
-// JavaScript Document
+/*
+ * STLF Activities Guide JavaScript
+ * author: Ben Pedersen
+ *
+ */
 
 var concept_index = 0;
 var mobile = 0;
 var top = 0;
 var list;
+var mobile_timer;
 
 function stlfSort(type,array) {
 	if (typeof(array) === 'undefined') array = ACTIVITIES.slice(0);
@@ -43,6 +48,7 @@ function stlfFilter(type,value,array) {
 function move(direction) {
 	var name = $('h2').html();
 	var activity = stlfFilter('name',name)[0];
+	if (!list) list = stlfSort('name');
 	var index = list.indexOf(activity);
 	if (typeof(direction) === 'number') {
 		var new_activity = list[index+direction];
@@ -64,6 +70,7 @@ function change_concept(direction) {
 	$('#filter').html(CONCEPTS[concept_index].replace(/\s/g,'&nbsp;'))
 }
 function select_concepts() {
+	$('body').attr('class','settings');
 	$('.activity').remove();
 	$('#home,#sort').hide();
 	$('#ok,#cancel').show();
@@ -82,6 +89,7 @@ function console_list(type,value) {
 	for (var i in list) console.log(list[i].name);
 }
 function browse(type,value) {
+	$('#bluebar').css('margin-top','');
 	$('body').attr('class','catalog');
 	$('.activity').remove();
 	$('h1,#browse,.info').hide();
@@ -94,13 +102,22 @@ function browse(type,value) {
 	for (var i in list) $h2.before('<button type="button" class="activity">' + list[i].name + '</button>');
 }
 function appHome() {
-	$('body').attr('class','front');
 	$('.activity').remove();
-	$('h1,#browse').show();
 	$('#home,.info,#sort').hide();
+	$('body').attr('class','front');
+	$('h1,#browse').show();
+	resize_front();
+}
+
+function resize_front() {
+	var space = window.innerHeight - $('h1').outerHeight() - $('#bluebar').outerHeight() - 43;
+	space /= 3;
+	$('h1').css('margin-top',Math.min(Math.max(window.innerHeight/6,space-10),125));
+	$('#bluebar').css('margin-top',space+20);
 }
 
 function show(name) {
+	$('#bluebar').css('margin-top','');
 	$('body').attr('class','detail');
 	$('.activity').remove();
 	$('#browse,.info').show();
@@ -118,21 +135,38 @@ function show(name) {
 	$('#goal').html(activity.goal);
 	$('#facilitation').empty();
 	for (var j in activity.facilitation) $('#facilitation').append('<li>' + activity.facilitation[j] + '</li>');
-	if (activity.debrief) {
-		$('#debrief').empty();
-		for (var k in activity.debrief) $('#debrief').append('<li>' + activity.debrief[k] + '</li>');
-		$('#debrief,[for="debrief"]').show();
+	
+	var info2 = [ 'songs', 'alterations', 'debrief', 'characteristics', 'statements', 'verbal', 'questions' ];
+	for (var s in info2) {
+		if (activity[info2[s]]) {
+			var $info2 = $('#' + info2[s]).empty();;
+			var data = activity[info2[s]];
+			var openTag = '<li>';
+			var closeTag = '</li>';
+			if (!(data instanceof Array)) {
+				var elementClass = info2[s].substr(0,info2[s].length-1);
+				openTag = '<li class="' + elementClass + '"><button class="' + elementClass + '">';
+				closeTag = '</button></li>';
+				data = Object.keys(data);
+				if (info2[s] == 'songs') data = data.sort();
+			}			
+			for (var k in data) $info2.append(openTag + data[k] + closeTag);
+			$info2.add('[for="' + info2[s] + '"]').show();
+		}
 	}
-	if (activity.alterations) {
-		$('#alterations').empty();
-		for (var k in activity.alterations) $('#alterations').append('<li>' + activity.alterations[k] + '</li>');
-		$('#alterations,[for="alterations"]').show();
+	if (activity.table) {
+		$('label[for="table"]').html(activity.table.title).show();
+		$('#table').empty().show();
+		for (var i=0; i<activity.table.rows; ++i) $('#table').append('<tr></tr>');
+		for (var c in activity.table.columns) {
+			$('#table tr').each(function(index) {
+				$(this).append('<td>' + ((index == 0) ? activity.table.columns[c] : ' ') + '</td>');
+			});
+		}
 	}
-	if (activity.songs) {
-		$('#songs').empty();
-		var songs = Object.keys(activity.songs).sort();
-		for (var k in songs) $('#songs').append('<li><button class="song">' + songs[k] + '</button></li>');
-		$('#songs,[for="songs"]').show();
+	if (activity.doc) {
+		$('label[for="doc"],#doc').show();
+		$('#doc').html(activity.doc[0]).attr('href',activity.doc[1]);
 	}
 }
 
@@ -146,13 +180,6 @@ function song_info(song) {
 	$('body').attr('class','song_info');
 	for (var l in data) $('#lyrics').append(data[l] + '<br>');
 	$(window).scrollTop(0);
-	$('#browse').one('click',function(event) {
-		$('#browse').html('Browse');
-		$('#lyrics').remove();
-		show('Repeat-After-Me Songs');
-		$(window).scrollTop($('#songs').offset().top);
-		return false;
-	});
 }
 
 function change_song(direction) {
@@ -168,6 +195,35 @@ function change_song(direction) {
 	$('#lyrics').empty();
 	$('body').attr('class','song_info');
 	for (var l in data) $('#lyrics').append(data[l] + '<br>');
+	$(window).scrollTop(0);
+}
+
+function statement_info(statement) {
+	var activity = stlfFilter('name','Human Connection')[0];
+	var data = activity.statements[statement];
+	$('.info').hide();
+	$('#name').html(statement).show().css('text-align','left');
+	$('#browse').html('Statements').css('width','auto');
+	$('#name').after('<div id="lyrics"></div>');
+	$('body').attr('class','statement_info');
+	$('#lyrics').append(data);
+	$(window).scrollTop(0);
+}
+
+function change_statement(direction) {
+	var activity = stlfFilter('name','Human Connection')[0];
+	var statements = Object.keys(activity.statements);
+	var index = statements.indexOf($('#name').html()) + direction;
+	if (index == statements.length) index = 0;
+	if (index < 0) index = statements.length - 1;
+	var statement = statements[index];
+	var data = activity.statements[statement];
+	$('#name').html(statement).show();
+	$('#browse').html('Statements');
+	$('#lyrics').empty();
+	$('body').attr('class','statement_info');
+	$('#lyrics').append(data);
+	$(window).scrollTop(0);
 }
 
 $(document).ready(function() {
@@ -181,12 +237,30 @@ $(document).ready(function() {
 	})
 	.on('scroll',function(event) {
 		if (mobile) $('button').removeClass('active');
+	})
+	.on('resize',function(event) {
+		if ($('body').attr('class') == 'front') resize_front();
 	});
 	$(document).on('click','button',function(event) {
 		switch(event.target.id) {
 			case 'browse':	
-				if (list) browse();
-				else browse('name');
+				if (['song_info','statement_info'].indexOf($('body').attr('class')) == -1) {
+					if (list) browse();
+					else browse('name');
+				}
+				else {
+					$('#browse').html('Browse').css('width','');
+					$('#lyrics').remove();
+					if ($('body').attr('class') == 'song_info') {
+						show('Repeat-After-Me Songs');
+						$(window).scrollTop($('label[for="songs"]').offset().top);
+					}
+					else {
+						$('#name').css('text-align','');
+						show('Human Connection');
+						$(window).scrollTop($('label[for="statements"]').offset().top);
+					}
+				}
 				break;
 			case 'home':
 				appHome();
@@ -207,20 +281,35 @@ $(document).ready(function() {
 				$('.concept,#select_concepts').remove();
 				$('#ok,#cancel').hide();
 				browse(['concept','name'],[concepts]);
+				// Apple Standalone App return to last screen
+				if (window.navigator.standalone) {
+					window.localStorage.setItem('concepts',JSON.stringify(concepts));
+				}
 				break;
 			default:
 				var $this = $(this);
 				if ($this.hasClass('activity')) show(this.innerHTML);
-				if ($this.hasClass('song')) song_info(this.innerHTML);
+				else if ($this.hasClass('song')) song_info(this.innerHTML);
+				else if ($this.hasClass('statement')) statement_info(this.innerHTML);
 				break;
+		}
+		// Apple Standalone App return to last screen
+		if (window.navigator.standalone) {
+			window.localStorage.setItem('screen',$('body').attr('class'));
+			window.localStorage.setItem('data',$('#name').html());
 		}
 	})
 	.on('tap','button',function(event) {
-			var $this = $(this);
-			if ($this.hasClass('concept')) {
-				if ($this.hasClass('checked')) $this.removeClass('checked').addClass('unchecked');
-				else $this.removeClass('unchecked').addClass('checked');
-			}
+		var $this = $(this);
+		if ($this.hasClass('concept')) {
+			if ($this.hasClass('checked')) $this.removeClass('checked').addClass('unchecked');
+			else $this.removeClass('unchecked').addClass('checked');
+		}
+		// Apple Standalone App return to last screen
+		if (window.navigator.standalone) {
+			window.localStorage.setItem('screen',$('body').attr('class'));
+			window.localStorage.setItem('data',$('#name').html());
+		}
 	})
 	.on('touchstart mousedown','button',function(event) {
 		$('button').not($(this).addClass('active')).removeClass('active');
@@ -236,8 +325,8 @@ $(document).ready(function() {
 	})
 	.on('mouseup',function(event) {
 		$('button').removeClass('active');
-	});
-	$('body').on('keydown swipe',function(event) { 
+	})
+	.on('keydown swipe',function(event) { 
 		var appScreen = $('body').attr('class');
 		if (appScreen == 'front') return true;
 		var direction;
@@ -251,9 +340,47 @@ $(document).ready(function() {
 		if (direction) {
 			if (appScreen == 'detail') move(direction);
 			else if (appScreen == 'song_info') change_song(direction);
+			else if (appScreen == 'statement_info') change_statement(direction);
 			//else change_concept(direction);
+			
+			// Apple Standalone App return to last screen
+			if (window.navigator.standalone) {
+				window.localStorage.setItem('data',$('#name').html());
+			}
 		}
 	});
+	// Apple Standalone App return to last screen
+	if (window.navigator.standalone) {
+		window.localStorage.removeItem('bodyHTML');
+		var concepts = window.localStorage.getItem('concepts');
+		if (concepts) browse(['concept','name'],[JSON.parse(concepts)]);
+		else browse('name');
+		var appScreen = window.localStorage.getItem('screen');
+		if (appScreen) {
+			var appData = window.localStorage.getItem('data');
+			switch(appScreen) {
+				case 'front':
+					appHome();
+					break;
+				case 'detail':
+					show(appData);
+					break;
+				case 'song_info':
+					show('Repeat-After-Me Songs');
+					song_info(appData);
+					break;
+				case 'statement_info':
+					show('Human Connection');
+					statement_info(appData);
+					break;
+				case 'settings':
+					select_concepts();
+					break;
+			}
+		}
+	}
+	
+	if ($('body').attr('class') == 'front') resize_front();
 });
 
 

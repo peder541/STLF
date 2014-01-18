@@ -731,7 +731,8 @@ function Hammer(element, options, undefined)
             _event_start = event;
 			
 			if (event.touches) _initial_screenY = event.touches[0].screenY;
-
+			
+			if (!element.getBoundingClientRect) element = document.body;
             // borrowed from jquery offset https://github.com/jquery/jquery/blob/master/src/offset.js
             var box = element.getBoundingClientRect();
             var clientTop  = element.clientTop  || document.body.clientTop  || 0;

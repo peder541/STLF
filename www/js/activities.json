@@ -1,4 +1,5 @@
 // JavaScript Document
+// Copyright Students Today Leaders Forever (STLF) National 2008.
 
 var CONCEPTS = [
 	'All Activities',
@@ -235,6 +236,7 @@ var ACTIVITIES = [
 			'Sense of Community',
 			'Sense of Individuality' ],
 		concept: 'Icebreakers and Energizers',
+
 		supplies: 'None',
 		time: 'Approximately 5 minutes per person',
 		groupsize: 'Around 5 per group (many groups)',
@@ -863,7 +865,7 @@ var ACTIVITIES = [
 			'Give each participant a handout (below).',
 			'Participants mingle and have ten minutes to complete the grid by finding participants and discovering one similarity and one difference for each.' ],
 		
-		table: { title: 'Similarities and Differences', columns: ['Name','Similarity','Difference'], rows: 5 }
+		table: { title: 'Similarities and Differences', columns: ['Name','Similarity','Difference'], rows: 6 }
 	
 	},
 	{
@@ -935,136 +937,103 @@ var ACTIVITIES = [
 			'If there was one thing you were going to take away from this activity, what would it be?',
 			'How can you contribute to support your team?' ],
 		
-		statements: [
-			[
-				'If you are an athlete, please move to the center.',
-				'Here we have all of our "dumb jocks" who only got into college because they can play a sport. Fortunately their coach was there to help them read the admission application. They are too busy with practice, classes, and mandatory study hall, to become involved with anything on campus. But hey if they are good enough to get drafted, they won\'t have to spend all five years here anyway. And if not, there are many things you can do with a General Education or Physical Education degree, as long as it does not involve reading. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.' 
-			], 
-			[
-				'If you are in a fraternity, please move to the center.',
-				'You are frat guys, who will only live with other frat guys, and only go to frat parties. You give more than $1,000 of your parent\'s money in social dues each year to support your brothers. You tend to be a walking billboard for your frat. If you are dating someone, they probably have the right hair color, the perfect body, and are in the right sorority. The only committed relationship you have though is with your fellow brothers, because what happens in the frat house after 1:30am stays in the frat house. What a girlfriend doesn\'t know won\'t hurt them right, or could it? LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you are in a sorority, please move to the center.',
-				'You are sorority girls, who only hang out with other sorority girls, and only go to frat parties. You tend to be a walking billboard for your sorority. Your parents, like all good parents, provide you with plenty of money to waste away. You only eat what you want when no one is looking just to spit it up later. You are always dieting and working out because you ended up five pounds heavier than you were as a freshman in high school. Mr. Right better be in the Right fraternity, or he is like totally wrong. People have called you superficial, but hey what do you care about a word that you cannot even spell? LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you are a member of a fraternity or sorority that is historically Black or Hispanic, please move to the center.',
-				'Historically Black or Hispanic Greek lettered organizations were founded to provide a safe place for these underrepresented groups to feel a sense of belonging. Some of them were founded in response to discrimination in membership practices of predominately white Greek lettered organizations. Differences in culture and stereotyping create barriers between different ethnic organizations making it a challenge to work together for a common goal LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'Women, please move to the center.',
-				'Women can expect to make less money than men do for equal work. They can be accused of being too emotional, irrational, aggressive, castrating, a pushy broad, or not tough enough to take it when they try to stand up for themselves or seek to follow their dreams. Women often feel trapped, minimized, dismissed. They can expect to do the majority of the work in the home as well as rearing the children and caring for aged parents, even if they have a full-time job outside of the home. Women can expect to be blamed for what does not go well with their children. They must be cautious of where they go, especially when alone. The potential for being assaulted, raped, and then blamed for it exists every day of their lives. Women can expect to learn to blame themselves for what happens to them, and to see other women as less valuable than men. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'Men, please move to the center.',
-				'From birth you have been told to be the strong one because "Boys don\'t cry". You spend the first half of your life listening to people tell you not to express your emotions, just to spend the 2nd half of your life listening to a woman tell you she just wished you would express your emotions. You were forced into physical sports and marketed towards alcohol and tobacco. You cannot beat root beer that comes in beer glasses, and bubblegum that is packaged like chewing tobacco. You are the expert of sexual relationships; you even know when a woman wants it, even if she doesn\'t think so. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you are a President of your organization or in a major decision-making or policy-making position, please move to the center.',
-				'The oppression of classism. You have achieved the ultimate level within an organization. If the organization succeeds you will be praised for it, if the organization fails, you will be blamed for it. Those in the outer circle are both the people who got you where you are, as well as those who now must help get you where you are going. Someone in the inner circle can run a power trip on someone on the outer. They have the power to do so, and it is done all the time. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'Anyone who attended private high school, please move to the center.',
-				'Those who are circling you now stereotyped you as being the rich kid. Your school, in most cases, is viewed as being safer than a public school, where there are no drug problems, no gang problems, and smaller classes for better education. When in actuality those problems can be found at all schools whether public or private. You are more likely to be going to college and not have to worry about financial aid or working a job thanks to your parents. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If both your parents did not go to college, please move to the center.',
-				'The oppression of classism. The people in the center are missing one of the key ingredients that predict the likelihood that they will graduate from college. Institutions of higher education ignore this fact and expect that they will have the support of family and the understanding of a system that is passed on from parents to children. They have less than a 7% chance of becoming a university professor. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you consider yourself overweight, please move to the center.',
-				'Offshoot of ableism. This is a horrendous oppression. Overweight people are often the subject of verbal abuse, are targeted as in need of change, not only of their bodies, but also of their personalities. They are represented as stupid, lazy, always happy, lacking in will power, uneducated, and unmotivated, by people in general and often by members of their own families. They are the target of countless advertising gimmicks that promise beauty, success, or sexual attractiveness, if they will buy a product to become thin or look thin. They will be pushed into behaviors, which are harmful to them, and if they refuse, punished by ostracism and discrimination in employment. The internalized oppression of how you feel about your body and therefore about yourself can be immobilizing. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you are a person of color, please move to the center.',
-				'These people are the so-called "minorities". Already one in four US persons defines him or herself as nonwhite and are increasing at rates as high as 10 times the white European population. Some of their ancestors came to this country in chains as slaves. The land was taken, their families exterminated systematically. They have done the manual labor that no one else wants to do and have been poorly paid for it. Their families were put in concentration and internment camps during World War II merely because of their race and national heritage. From the moment they were born they have had to push against the internalized oppression that says they are not as good as white people. They have been minimized, put down. Their role models have been gardeners and cleaning ladies. Lynchings still happen in the United States. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you are Jewish, please move to the center.',
-				'Jews have been persecuted where they have lived. They have been banned from institutions in the USA, stereotyped as power hungry, ostracized from social clubs, and continue to be. Six million Jews were exterminated systematically with the full knowledge of the world. The world is not a safe place, and many Jewish people live with the fear of annihilation. It has happened, and they know it can happen again. Think of what it must have been like to be a Jewish mother in 1943. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you are from a rural community, please move to the center.',
-				'The oppression of classism. These people are often the target of "country bumpkin" jokes, are stereotyped as slow, dumb, lazy, no ambition, "farmers", conservative. Their community lifestyle is the object of jokes and derision. They are encouraged to leave their community for "a bigger and better" place. They will often feel uncomfortable in large crowds, feel stifled by the traffic in a large town, and find living in close proximity to lots of people to be uncomfortable. Their community may suffer severe economic hardship and even disappear if it is linked to a one-product economy. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you were raised in an inner city, please move to the center.',
-				'The oppression of classism. These people will be stereotyped as "street smart", dangerous, from a poor school, wanting to make fast money, into drugs, involved in gangs, from a broken home. They are more likely to be poor, from a single-parent household, and the victim of violence. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you were raised in a suburb, please move to the center.',
-				'The oppression of classism. These people will be stereotyped as "rich kids", spoiled brats, from a rich school, involved in sports, and they park their brand new car in the fourth garage space at their parent’s large home. They are "street stupid", the victim of street ignorance. They could not make it a day in the real world without their dad\'s MasterCard and their mom\'s Visa. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you are a white male, please move to the center.',
-				'You inherited the privilege of power and authority, yet you find yourselves blamed for the problems of the world. You are expected to be the breadwinner. You cannot show emotions for fear of being perceived as weak. It is assumed you would not be interested in or good at rearing children or being the primary caregiver. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you are a Black male, please move to the center.',
-				'You may be stereotyped as being from Chicago, a thug, dangerous, from fatherless families, into drugs, involved in gangs, only listens to rap music. You are viewed as someone who is targeted by the police and presumed to have committed a crime; you are here in college on a sports scholarship or in some special remedial program. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
-			],
-			[
-				'If you are a Hispanic male, please move to the center.',
-				'You may be stereotyped as being from Chicago. You are also targeted by the police and presumed to have committed a crime. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you are under 25, please move to the center.',
-				'The oppression of adultism. People under 25 have limited rights, their concerns are minimized, they are considered young and foolish, at risk for sexually transmitted diseases of epidemic proportions. They are among the least represented groups in the government and often at the mercy of adults in authority who would abuse them in exchange for grades or other symbols of acceptance and success. We exoticize youth yet deny you decision-making rights. Most males under 25 cannot legally rent an automobile. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you are a gay man, lesbian, bisexual or transgendered, please move to the center.',
-				'This group is still blamed for the AIDS epidemic. They are accused of the vilest of crimes as if they were the sole perpetrators. They must lead secret lives from their families, employers, and friends, or risk being ostracized. People feel perfectly justified in making insulting comments and banishing you from their religious institutions. They are at risk for verbal abuse at any time. In 1999, the highest incident of violence was against gay and lesbian people. In many settings, people cannot cross over for fear of the consequences. Know that if you can\'t cross, you will feel tremendous pain. Know that I know that. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If English is not your first language, please move to the center.',
-				'The oppression of racism- language oppression. These people are considered a nuisance and burden. They may be shamed by teachers and other students, and are laughed at and made fun of as if monolingualism equals patriotism. Research shows that it takes at least three years for an individual to get command of a language. Think of children in school - five days a week, six hours a day, for three years - the incredible boredom. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you are Christian, please move to the center.',
-				'These people are considered holy rollers and believe everything written in the Bible. To have beliefs counter to Christianity is certain condemnation but your soul can be saved if you convert. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you are Muslim, please move to the center.',
-				'These people are considered extremist and willing to die for Allah. They oppress women and expect total submission from them towards their husbands or males in the household. They hate Jews and believe the Jew is the scourge of the earth. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you are agnostic or atheist, please move to the center.',
-				'These people are considered spiritually lost and doomed to Hell by Christians. They lack a moral compass because they are not guided by Christian beliefs. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you have served in the armed services, please move to the center.',
-				'The oppression of classism. With the exception of World War II, working class women and men go to war; working class women and men fight and die for their country. Ross Perot said, "It\'s not the sons and daughters of beautiful people who go to war." LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If there is a history of alcohol abuse in your family, please move to the center.',
-				'The people in this group are more likely to have difficulty having fun, expressing their feelings, maintaining intimate relationships, be over or under involved with parents regardless of age or distance. They are more likely to be attracted to victims in love and friendships, to feel guilty when assertive, to give in to others, even when it is harmful to them. Think of fear, the sadness, the denial, the hurts and mistreatments, and how it impacts family members, friends and co-workers. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you come from a single parent family, please move to the center.',
-				'The oppression of adultism - for the child who never had any say in how her or his life would be, and was often left to wonder about the other parent who may not have been around. The oppression of classism - they are more likely to be reared in poverty, less likely to graduate from college, expected to take care of siblings at an earlier age, less likely to have had adequate child care, more likely to be put in the role of an adult in their family, they learned to do without. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you are a single parent, please move to the center.',
-				'The oppression of sexism - although many more fathers in divorced settings are helping with parenting, the primary responsibility, in general, remains with the mother, the woman. The oppression of classism - if you have money, you get to leave your child in a safe and happy place while you work. If not, you may have to leave them crying and feeling afraid. Putting responsibilities on them at an early age because you have no other option, coming home at night totally exhausted and knowing you must parent alone. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you were adopted, please move to the center.',
-				'People in this group are viewed to have a lost sense of identity, especially if they do not know who their maternal parents are. Others make the assumption that because a person was put up for adoption, they were not wanted by their parents. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If you have a disability, visible or hidden, please move to the center.',
-				'The oppression of ableism - we are making progress, on a national and institutional level, to provide help and support to persons with disabilities, yet we still have more work to do. People with physical disabilities are sometimes looked upon as people who need help or assistance from others. People with learning disabilities are sometimes assumed to be dumb, slow, or unable to compete on an academic level. The oppression of classism - if you cannot find the resources to pay for such help and support, you will be ignored, excluded, perhaps denied opportunities on many levels. You may be viewed as a burden to your family, ignored by classmates, and pitied by society in general. Think about children....and their future. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If there is mental illness in your family, please move to the center.',
-				'The oppression of ableism - the lack of national priority to provide assistance. The oppression of classism - think of the horror stories of our mental healthy system (although there are some improvements), the need to institutionalize a member of your family, and then to have to deal with the embarrassment, to walk away and have to deal with guilt of having done so. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			],
-			[
-				'If there was or is physical or verbal abuse in your family, please move to the center.',
-				'It is estimated that over one million children in the USA are permanently injured by physical abuse every year. In some schools it is still permitted, with parental consent, to paddle a child. One in every four girls and one in every seven boys will be sexually molested before they reach 18 years of age. Little children with no place to go, no place to hide; terrorized, brutalized...think of little children. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
-			]
-		]
+		statements: {
+			'If you are an athlete, please move to the center.':
+			'Here we have all of our "dumb jocks" who only got into college because they can play a sport. Fortunately their coach was there to help them read the admission application. They are too busy with practice, classes, and mandatory study hall, to become involved with anything on campus. But hey if they are good enough to get drafted, they won\'t have to spend all five years here anyway. And if not, there are many things you can do with a General Education or Physical Education degree, as long as it does not involve reading. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you are in a fraternity, please move to the center.':
+			'You are frat guys, who will only live with other frat guys, and only go to frat parties. You give more than $1,000 of your parent\'s money in social dues each year to support your brothers. You tend to be a walking billboard for your frat. If you are dating someone, they probably have the right hair color, the perfect body, and are in the right sorority. The only committed relationship you have though is with your fellow brothers, because what happens in the frat house after 1:30am stays in the frat house. What a girlfriend doesn\'t know won\'t hurt them right, or could it? LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you are in a sorority, please move to the center.':
+			'You are sorority girls, who only hang out with other sorority girls, and only go to frat parties. You tend to be a walking billboard for your sorority. Your parents, like all good parents, provide you with plenty of money to waste away. You only eat what you want when no one is looking just to spit it up later. You are always dieting and working out because you ended up five pounds heavier than you were as a freshman in high school. Mr. Right better be in the Right fraternity, or he is like totally wrong. People have called you superficial, but hey what do you care about a word that you cannot even spell? LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you are a member of a fraternity or sorority that is historically Black or Hispanic, please move to the center.':
+			'Historically Black or Hispanic Greek lettered organizations were founded to provide a safe place for these underrepresented groups to feel a sense of belonging. Some of them were founded in response to discrimination in membership practices of predominately white Greek lettered organizations. Differences in culture and stereotyping create barriers between different ethnic organizations making it a challenge to work together for a common goal LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'Women, please move to the center.':
+			'Women can expect to make less money than men do for equal work. They can be accused of being too emotional, irrational, aggressive, castrating, a pushy broad, or not tough enough to take it when they try to stand up for themselves or seek to follow their dreams. Women often feel trapped, minimized, dismissed. They can expect to do the majority of the work in the home as well as rearing the children and caring for aged parents, even if they have a full-time job outside of the home. Women can expect to be blamed for what does not go well with their children. They must be cautious of where they go, especially when alone. The potential for being assaulted, raped, and then blamed for it exists every day of their lives. Women can expect to learn to blame themselves for what happens to them, and to see other women as less valuable than men. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'Men, please move to the center.':
+			'From birth you have been told to be the strong one because "Boys don\'t cry". You spend the first half of your life listening to people tell you not to express your emotions, just to spend the 2nd half of your life listening to a woman tell you she just wished you would express your emotions. You were forced into physical sports and marketed towards alcohol and tobacco. You cannot beat root beer that comes in beer glasses, and bubblegum that is packaged like chewing tobacco. You are the expert of sexual relationships; you even know when a woman wants it, even if she doesn\'t think so. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you are a President of your organization or in a major decision-making or policy-making position, please move to the center.':
+			'The oppression of classism. You have achieved the ultimate level within an organization. If the organization succeeds you will be praised for it, if the organization fails, you will be blamed for it. Those in the outer circle are both the people who got you where you are, as well as those who now must help get you where you are going. Someone in the inner circle can run a power trip on someone on the outer. They have the power to do so, and it is done all the time. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'Anyone who attended private high school, please move to the center.':
+			'Those who are circling you now stereotyped you as being the rich kid. Your school, in most cases, is viewed as being safer than a public school, where there are no drug problems, no gang problems, and smaller classes for better education. When in actuality those problems can be found at all schools whether public or private. You are more likely to be going to college and not have to worry about financial aid or working a job thanks to your parents. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If both your parents did not go to college, please move to the center.':
+			'The oppression of classism. The people in the center are missing one of the key ingredients that predict the likelihood that they will graduate from college. Institutions of higher education ignore this fact and expect that they will have the support of family and the understanding of a system that is passed on from parents to children. They have less than a 7% chance of becoming a university professor. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you consider yourself overweight, please move to the center.':
+			'Offshoot of ableism. This is a horrendous oppression. Overweight people are often the subject of verbal abuse, are targeted as in need of change, not only of their bodies, but also of their personalities. They are represented as stupid, lazy, always happy, lacking in will power, uneducated, and unmotivated, by people in general and often by members of their own families. They are the target of countless advertising gimmicks that promise beauty, success, or sexual attractiveness, if they will buy a product to become thin or look thin. They will be pushed into behaviors, which are harmful to them, and if they refuse, punished by ostracism and discrimination in employment. The internalized oppression of how you feel about your body and therefore about yourself can be immobilizing. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you are a person of color, please move to the center.':
+			'These people are the so-called "minorities". Already one in four US persons defines him or herself as nonwhite and are increasing at rates as high as 10 times the white European population. Some of their ancestors came to this country in chains as slaves. The land was taken, their families exterminated systematically. They have done the manual labor that no one else wants to do and have been poorly paid for it. Their families were put in concentration and internment camps during World War II merely because of their race and national heritage. From the moment they were born they have had to push against the internalized oppression that says they are not as good as white people. They have been minimized, put down. Their role models have been gardeners and cleaning ladies. Lynchings still happen in the United States. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you are Jewish, please move to the center.':
+			'Jews have been persecuted where they have lived. They have been banned from institutions in the USA, stereotyped as power hungry, ostracized from social clubs, and continue to be. Six million Jews were exterminated systematically with the full knowledge of the world. The world is not a safe place, and many Jewish people live with the fear of annihilation. It has happened, and they know it can happen again. Think of what it must have been like to be a Jewish mother in 1943. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you are from a rural community, please move to the center.':
+			'The oppression of classism. These people are often the target of "country bumpkin" jokes, are stereotyped as slow, dumb, lazy, no ambition, "farmers", conservative. Their community lifestyle is the object of jokes and derision. They are encouraged to leave their community for "a bigger and better" place. They will often feel uncomfortable in large crowds, feel stifled by the traffic in a large town, and find living in close proximity to lots of people to be uncomfortable. Their community may suffer severe economic hardship and even disappear if it is linked to a one-product economy. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you were raised in an inner city, please move to the center.':
+			'The oppression of classism. These people will be stereotyped as "street smart", dangerous, from a poor school, wanting to make fast money, into drugs, involved in gangs, from a broken home. They are more likely to be poor, from a single-parent household, and the victim of violence. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you were raised in a suburb, please move to the center.':
+			'The oppression of classism. These people will be stereotyped as "rich kids", spoiled brats, from a rich school, involved in sports, and they park their brand new car in the fourth garage space at their parent’s large home. They are "street stupid", the victim of street ignorance. They could not make it a day in the real world without their dad\'s MasterCard and their mom\'s Visa. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you are a white male, please move to the center.':
+			'You inherited the privilege of power and authority, yet you find yourselves blamed for the problems of the world. You are expected to be the breadwinner. You cannot show emotions for fear of being perceived as weak. It is assumed you would not be interested in or good at rearing children or being the primary caregiver. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you are a Black male, please move to the center.':
+			'You may be stereotyped as being from Chicago, a thug, dangerous, from fatherless families, into drugs, involved in gangs, only listens to rap music. You are viewed as someone who is targeted by the police and presumed to have committed a crime; you are here in college on a sports scholarship or in some special remedial program. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+				
+			'If you are a Hispanic male, please move to the center.':
+			'You may be stereotyped as being from Chicago. You are also targeted by the police and presumed to have committed a crime. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you are under 25, please move to the center.':
+			'The oppression of adultism. People under 25 have limited rights, their concerns are minimized, they are considered young and foolish, at risk for sexually transmitted diseases of epidemic proportions. They are among the least represented groups in the government and often at the mercy of adults in authority who would abuse them in exchange for grades or other symbols of acceptance and success. We exoticize youth yet deny you decision-making rights. Most males under 25 cannot legally rent an automobile. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you are a gay man, lesbian, bisexual or transgendered, please move to the center.':
+			'This group is still blamed for the AIDS epidemic. They are accused of the vilest of crimes as if they were the sole perpetrators. They must lead secret lives from their families, employers, and friends, or risk being ostracized. People feel perfectly justified in making insulting comments and banishing you from their religious institutions. They are at risk for verbal abuse at any time. In 1999, the highest incident of violence was against gay and lesbian people. In many settings, people cannot cross over for fear of the consequences. Know that if you can\'t cross, you will feel tremendous pain. Know that I know that. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If English is not your first language, please move to the center.':
+			'The oppression of racism- language oppression. These people are considered a nuisance and burden. They may be shamed by teachers and other students, and are laughed at and made fun of as if monolingualism equals patriotism. Research shows that it takes at least three years for an individual to get command of a language. Think of children in school - five days a week, six hours a day, for three years - the incredible boredom. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you are Christian, please move to the center.':
+			'These people are considered holy rollers and believe everything written in the Bible. To have beliefs counter to Christianity is certain condemnation but your soul can be saved if you convert. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you are Muslim, please move to the center.':
+			'These people are considered extremist and willing to die for Allah. They oppress women and expect total submission from them towards their husbands or males in the household. They hate Jews and believe the Jew is the scourge of the earth. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you are agnostic or atheist, please move to the center.':
+			'These people are considered spiritually lost and doomed to Hell by Christians. They lack a moral compass because they are not guided by Christian beliefs. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you have served in the armed services, please move to the center.':
+			'The oppression of classism. With the exception of World War II, working class women and men go to war; working class women and men fight and die for their country. Ross Perot said, "It\'s not the sons and daughters of beautiful people who go to war." LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If there is a history of alcohol abuse in your family, please move to the center.':
+			'The people in this group are more likely to have difficulty having fun, expressing their feelings, maintaining intimate relationships, be over or under involved with parents regardless of age or distance. They are more likely to be attracted to victims in love and friendships, to feel guilty when assertive, to give in to others, even when it is harmful to them. Think of fear, the sadness, the denial, the hurts and mistreatments, and how it impacts family members, friends and co-workers. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you come from a single parent family, please move to the center.':
+			'The oppression of adultism - for the child who never had any say in how her or his life would be, and was often left to wonder about the other parent who may not have been around. The oppression of classism - they are more likely to be reared in poverty, less likely to graduate from college, expected to take care of siblings at an earlier age, less likely to have had adequate child care, more likely to be put in the role of an adult in their family, they learned to do without. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you are a single parent, please move to the center.':
+			'The oppression of sexism - although many more fathers in divorced settings are helping with parenting, the primary responsibility, in general, remains with the mother, the woman. The oppression of classism - if you have money, you get to leave your child in a safe and happy place while you work. If not, you may have to leave them crying and feeling afraid. Putting responsibilities on them at an early age because you have no other option, coming home at night totally exhausted and knowing you must parent alone. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you were adopted, please move to the center.':
+			'People in this group are viewed to have a lost sense of identity, especially if they do not know who their maternal parents are. Others make the assumption that because a person was put up for adoption, they were not wanted by their parents. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If you have a disability, visible or hidden, please move to the center.':
+			'The oppression of ableism - we are making progress, on a national and institutional level, to provide help and support to persons with disabilities, yet we still have more work to do. People with physical disabilities are sometimes looked upon as people who need help or assistance from others. People with learning disabilities are sometimes assumed to be dumb, slow, or unable to compete on an academic level. The oppression of classism - if you cannot find the resources to pay for such help and support, you will be ignored, excluded, perhaps denied opportunities on many levels. You may be viewed as a burden to your family, ignored by classmates, and pitied by society in general. Think about children....and their future. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If there is mental illness in your family, please move to the center.':
+			'The oppression of ableism - the lack of national priority to provide assistance. The oppression of classism - think of the horror stories of our mental healthy system (although there are some improvements), the need to institutionalize a member of your family, and then to have to deal with the embarrassment, to walk away and have to deal with guilt of having done so. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.',
+
+			'If there was or is physical or verbal abuse in your family, please move to the center.':
+			'It is estimated that over one million children in the USA are permanently injured by physical abuse every year. In some schools it is still permitted, with parental consent, to paddle a child. One in every four girls and one in every seven boys will be sexually molested before they reach 18 years of age. Little children with no place to go, no place to hide; terrorized, brutalized...think of little children. LOOK TO THE OUTER CIRCLE INTO EACH OTHER\'S EYES AND MAKE A HUMAN CONNECTION.'
+		}
 	},
 	{
 		name: 'Honesty Line',
@@ -1274,7 +1243,7 @@ var ACTIVITIES = [
 		
 		images: [ 'self_concept1.png', 'self_concept2.png' ],
 		
-		doc: [ 'self_concept.docx' ]
+		doc: [ 'Self Concept Quiz', 'https://docs.google.com/document/d/1ope5xJQYzpP76Udiuuv2mI7P2WF1JtEg8M7fyTLU8N8/edit?usp=sharing' ]
 	},
 	{
 		name: 'Candlelight Activity',
@@ -1424,7 +1393,7 @@ var ACTIVITIES = [
 		supplies: 'Paper, Pens, Markers, all optional',
 		time: 'If using paper, 30-40 minutes. If choosing to do verbally, 45 minutes to 1 hour.',
 		groupsize: 'Entire Bus, 30-40',
-		goals: 'To allow participants to realize they have impacted someone else’s life. If done verbally, participants are able to know who is looking up to them. If done silently with paper, students anonymously compliment one another.',
+		goal: 'To allow participants to realize they have impacted someone else’s life. If done verbally, participants are able to know who is looking up to them. If done silently with paper, students anonymously compliment one another.',
 		facilitation: [
 			'Pass around paper and writing utensil.',
 			'Can decide to set the atmosphere with quiet music and candles if desired.',
@@ -1432,8 +1401,7 @@ var ACTIVITIES = [
 			'Have each person write their name in the middle of the paper and include a drawing if so desired.',
 			'To begin, have everyone pass their paper to the person on their left. At this time they will no longer see their own paper, but each paper will be passed around the entire circle so that everyone has a chance to write a word or phrase about each new friend they have made.',
 			'To end, allow about 5-10 minutes for students to read over their paper and close with brief questions to let them think about how they felt while reading their own paper.' ],
-		alterations: [
-			'Verbal Version:',
+		verbal: [
 			'Have entire group form into a circle, with the ability to see everyone. ',
 			'Each person will be the first to answer one question, after they have answered, the person to their right will then say the name of an individual on the trip who the question applies to. After completing the entire circle, allow participants to come up with a few of their own questions.',
 			'Questions usually go from funny and light, to more serious.' ],
@@ -1490,4 +1458,6 @@ var ACTIVITIES = [
 	}
 ]	
 
-// Add support for songs, alterations, debrief, images, characteristics, statements, table, doc, questions
+// Special support added for songs*, alterations, debrief, characteristics, statements*, verbal, questions, table*, doc*
+// Add support for images*
+// *Particularly unique
