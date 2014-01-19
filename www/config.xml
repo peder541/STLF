@@ -2,7 +2,7 @@
 <widget id="com.okeebo.stlf" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>STLF Activites Guide</name>
     <description>
-        Reference all of the STLF Activities on your phone!
+        Reference all of the STLF Activities on your mobile device!
     </description>
     <author email="ben@okeebo.com" href="http://okeebo.com">
         Ben Pedersen
