@@ -384,13 +384,14 @@ $(document).ready(function() {
 
 });
 
-document.addEventListener('deviceready', onReady, true);
-
-function onReady() {
-	alert('ready');
-	document.addEventListener("backbutton", onBackKeyDown, true);
+function onLoad() {
+	document.addEventListener("deviceready", onDeviceReady, false);
 }
-
+// PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+function onDeviceReady() {
+	// Register the event listener
+	document.addEventListener('backbutton', onBackKeyDown, false);
+}
 function onBackKeyDown() {
     // Handle the back button
 	alert('back');
@@ -412,7 +413,6 @@ function onBackKeyDown() {
 			break;
 	}
 }
-
 
 
 ///// FOR UMN RELATED PROJECTS, NOT RELEVANT TO STLF /////
