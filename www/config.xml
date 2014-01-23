@@ -8,6 +8,9 @@
         Ben Pedersen
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />
+	<feature name="App">
+        <param name="android-package" value="org.apache.cordova.App" />
+    </feature>
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
