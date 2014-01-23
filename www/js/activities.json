@@ -1076,7 +1076,7 @@ var ACTIVITIES = [
 			'Step forward if you consider yourself religious.' ]
 	},
 	{
-		name: 'Walk to the CORE',
+		name: 'Walk to the Core',
 		outcomes: [
 			'Social Awareness',
 			'Affection for Others',

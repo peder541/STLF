@@ -381,7 +381,32 @@ $(document).ready(function() {
 	}
 	
 	if ($('body').attr('class') == 'front') resize_front();
+	
+	document.addEventListener("backbutton", onBackKeyDown, false);
+
 });
+
+function onBackKeyDown() {
+    // Handle the back button
+	switch ($('body').attr('class')) {
+		case 'front':
+			navigator.app.exitApp();
+			break;
+		case 'catalog':
+			appHome();
+			break;
+		case 'detail', 'settings':
+			browse();
+			break;
+		case 'song_info':
+			show('Repeat-After-Me Songs');
+			break;
+		case 'statement_info':
+			show('Human Connections');
+			break;
+	}
+}
+
 
 
 ///// FOR UMN RELATED PROJECTS, NOT RELEVANT TO STLF /////
