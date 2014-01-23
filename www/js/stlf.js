@@ -381,10 +381,15 @@ $(document).ready(function() {
 	}
 	
 	if ($('body').attr('class') == 'front') resize_front();
-	
-	document.addEventListener("backbutton", onBackKeyDown, true);
 
 });
+
+document.addEventListener('deviceready', onReady, true);
+
+function onReady() {
+	alert('ready');
+	document.addEventListener("backbutton", onBackKeyDown, true);
+}
 
 function onBackKeyDown() {
     // Handle the back button
