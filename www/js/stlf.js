@@ -388,7 +388,6 @@ $(document).ready(function() {
 });
 
 function onBackKeyDown() {
-	alert('back');
     // Handle the back button
 	switch ($('body').attr('class')) {
 		case 'front':
@@ -397,14 +396,20 @@ function onBackKeyDown() {
 		case 'catalog':
 			appHome();
 			break;
-		case 'detail', 'settings':
+		case 'settings':
+			$('.concept,#select_concepts').remove();
+			$('#ok,#cancel').hide();
+		case 'detail':
 			browse();
 			break;
 		case 'song_info':
+			$('#lyrics').remove();
 			show('Repeat-After-Me Songs');
 			break;
 		case 'statement_info':
-			show('Human Connections');
+			$('#lyrics').remove();
+			$('#name').css('text-align','');
+			show('Human Connection');
 			break;
 	}
 }
