@@ -388,6 +388,7 @@ $(document).ready(function() {
 });
 
 function onBackKeyDown() {
+	alert('back');
     // Handle the back button
 	switch ($('body').attr('class')) {
 		case 'front':
