@@ -391,9 +391,11 @@ function onLoad() {
 // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
 function onDeviceReady() {
 	// Register the event listener
+	alert('ready');
 	document.addEventListener('backbutton', onBackKeyDown, false);
 }
 function onBackKeyDown() {
+	alert('back');
     // Handle the back button
 	switch ($('body').attr('class')) {
 		case 'front':
