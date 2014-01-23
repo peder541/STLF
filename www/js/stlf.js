@@ -388,6 +388,7 @@ $(document).ready(function() {
 
 function onBackKeyDown() {
     // Handle the back button
+	alert('back');
 	switch ($('body').attr('class')) {
 		case 'front':
 			navigator.app.exitApp();
