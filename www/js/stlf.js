@@ -381,10 +381,16 @@ $(document).ready(function() {
 	}
 	
 	if ($('body').attr('class') == 'front') resize_front();
-	
-	document.addEventListener("backbutton", onBackKeyDown, false);
 
 });
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+// PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+function onDeviceReady() {
+	// Register the event listener
+   document.addEventListener("backbutton", onBackKeyDown, false);
+}
 
 function onBackKeyDown() {
     // Handle the back button
