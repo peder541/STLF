@@ -385,6 +385,7 @@ $(document).ready(function() {
 });
 
 function onLoad() {
+	alert('load');
 	document.addEventListener("deviceready", onDeviceReady, false);
 }
 // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
@@ -394,7 +395,6 @@ function onDeviceReady() {
 }
 function onBackKeyDown() {
     // Handle the back button
-	alert('back');
 	switch ($('body').attr('class')) {
 		case 'front':
 			navigator.app.exitApp();
