@@ -10,6 +10,17 @@ var top = 0;
 var list;
 var mobile_timer;
 
+var ACTIVITIES = [];
+var CONCEPTS = [
+	'All Activities',
+	'Diversity',
+	'Icebreakers and Energizers',
+	'Leadership',
+	'Positive Affirmation/Recognition',
+	'Reflection',
+	'Team Builders'
+];
+
 function stlfSort(type,array) {
 	if (typeof(array) === 'undefined') array = ACTIVITIES.slice(0);
 	if (typeof(type) === 'object') for (var i in type) array = stlfSort(type[i],array);
@@ -19,7 +30,18 @@ function stlfSort(type,array) {
 	});
 	return array;
 }
-
+function stlfIndexOf(activity,array) {
+	if (typeof(array) === 'undefined') array = ACTIVITIES.slice(0);
+	if (activity.length == 1) activity = activity[0];
+	for (var i=0; i < array.length; ++i) {
+		if (activity.name == array[i].name) {
+			// What to do about activities with the same name?
+			// Let's follow the convention that activities only have the same name if they are actually the "same activity" but with different content due to maturity
+			if ($(activity.maturity).not(array[i].maturity).length == 0 && $(array[i].maturity).not(activity.maturity).length == 0) return i;
+		}
+	}
+	return -1;
+}
 function stlfFilter(type,value,array) {
 	if (typeof(array) === 'undefined') array = ACTIVITIES.slice(0);
 	if (typeof(type) === 'object') {
@@ -79,7 +101,6 @@ function select_concepts() {
 	var concepts = [];
 	for (var j in list) concepts.push(list[j].concept);
 	for (var i in CONCEPTS) if (i != 0) $h2.before('<button class="concept' +(concepts.indexOf(CONCEPTS[i]) == -1 ? '' : ' checked')+ '">' + CONCEPTS[i] + '</button>');
-	
 }
 
 function console_list(type,value) {
@@ -92,7 +113,7 @@ function browse(type,value) {
 	$('#bluebar').css('margin-top','');
 	$('body').attr('class','catalog');
 	$('.activity').remove();
-	$('h1,#browse,.info').hide();
+	$('h1,#browse,.info,#edit,#fb-login').hide();
 	$('#home,#sort').show();
 	if (type) {
 		if (typeof(value) === 'undefined') list = stlfSort(type);
@@ -103,9 +124,9 @@ function browse(type,value) {
 }
 function appHome() {
 	$('.activity').remove();
-	$('#home,.info,#sort').hide();
+	$('#home,.info,#edit,#sort').hide();
 	$('body').attr('class','front');
-	$('h1,#browse').show();
+	$('h1,#browse,#fb-login').show();
 	resize_front();
 }
 
@@ -114,13 +135,16 @@ function resize_front() {
 	space /= 3;
 	$('h1').css('margin-top',Math.min(Math.max(window.innerHeight/6,space-10),125));
 	$('#bluebar').css('margin-top',space+20);
+	if ($('#fb-login').index() != -1) {
+		$('#fb-login').css('margin-top',($(window).height() - ($('#bluebar').offset().top + $('#bluebar').outerHeight()) - $('#fb-login').outerHeight()) / 2);
+	}
 }
 
 function show(name) {
 	$('#bluebar').css('margin-top','');
 	$('body').attr('class','detail');
 	$('.activity').remove();
-	$('#browse,.info').show();
+	$('#browse,.info,#edit').show();
 	$('#home,#sort,.info2').hide();
 	$(window).scrollTop(0);
 	var activity = stlfFilter('name',name)[0];
@@ -133,17 +157,18 @@ function show(name) {
 	$('#time').html(activity.time);
 	$('#groupsize').html(activity.groupsize);
 	$('#goal').html(activity.goal);
-	$('#facilitation').empty();
-	for (var j in activity.facilitation) $('#facilitation').append('<li>' + activity.facilitation[j] + '</li>');
 	
-	var info2 = [ 'songs', 'alterations', 'debrief', 'characteristics', 'statements', 'verbal', 'questions' ];
+	if (activity.note) $('#note').html(activity.note);
+	else $('[for="note"],#note').hide();
+	
+	var info2 = [ 'facilitation', 'songs', 'alterations', 'debrief', 'characteristics', 'statements', 'verbal', 'questions' ];
 	for (var s in info2) {
 		if (activity[info2[s]]) {
-			var $info2 = $('#' + info2[s]).empty();;
+			var $info2 = $('#' + info2[s]).empty();
 			var data = activity[info2[s]];
 			var openTag = '<li>';
 			var closeTag = '</li>';
-			if (!(data instanceof Array)) {
+			if (!$.isArray(data)) {
 				var elementClass = info2[s].substr(0,info2[s].length-1);
 				openTag = '<li class="' + elementClass + '"><button class="' + elementClass + '">';
 				closeTag = '</button></li>';
@@ -173,7 +198,7 @@ function show(name) {
 function song_info(song) {
 	var activity = stlfFilter('name','Repeat-After-Me Songs')[0];
 	var data = activity.songs[song];
-	$('.info').hide();
+	$('.info,#edit').hide();
 	$('#name').html(song).show();
 	$('#browse').html('Songs');
 	$('#name').after('<div id="lyrics"></div>');
@@ -201,7 +226,7 @@ function change_song(direction) {
 function statement_info(statement) {
 	var activity = stlfFilter('name','Human Connection')[0];
 	var data = activity.statements[statement];
-	$('.info').hide();
+	$('.info,#edit').hide();
 	$('#name').html(statement).show().css('text-align','left');
 	$('#browse').html('Statements').css('width','auto');
 	$('#name').after('<div id="lyrics"></div>');
@@ -226,7 +251,78 @@ function change_statement(direction) {
 	$(window).scrollTop(0);
 }
 
+function updateStatusCallback(response, ghost) {
+	switch (response.status) {
+		case 'connected':
+			$('#fb-login').remove();
+			fetchActivities(FB.getAccessToken());
+			$.get('https://www.okeebo.com/stlf/activities/access.php?access_token=' + FB.getAccessToken(), function(result) {
+				$('body').append('<div id="fb-login">Access: ' + result + '</div>');
+				if (result.replace(/\s+/g,'') == 'NationalStaff') $('#bluebar').append('<button id="edit">Edit</button>');
+				if ($('body').attr('class') == 'front') resize_front();
+			});
+			break;
+		default:
+			/* Login Method 1 (auto) */
+			$('body').append('<div id="fb-login"><button>Log in</button></div>');
+			if ($('body').attr('class') == 'front') resize_front();
+			/**/
+			/* Login Method 2 (ask) 
+			if (!ghost) FB.login(function(response) { updateStatusCallback(response, true); });
+			/**/
+			break;
+	}
+}
+
+function fetchActivities(access_token, local_file_flag) {
+	var url = 'https://www.okeebo.com/stlf/activities/';
+	if (access_token) {
+		if (local_file_flag) url = access_token;
+		else url += '?access_token=' + access_token;
+	}
+	$.ajax({
+		async: true,
+		dataType: "json",
+		url: url,
+		mimeType: "application/json",
+		success: function(result){
+			loadActivities(result);
+			window.localStorage.setItem('activities',JSON.stringify(result));
+		},
+		error: function(result){
+			if (local_file_flag) {
+				loadActivities(window.localStorage.getItem('activities'));
+			}
+			else fetchActivities('js/activities.json', true);
+		}
+	});
+}
+
+function loadActivities(result) {
+	if (result) {
+		if (typeof(result) === 'string') result = JSON.parse(result);
+		ACTIVITIES = result;
+		if (list) {
+			var concepts = [];
+			var temp = [];
+			for (var j in list) temp.push(list[j].concept);
+			for (var i in CONCEPTS) if (i != 0) if (temp.indexOf(CONCEPTS[i]) != -1) concepts.push(CONCEPTS[i]);
+			list = stlfFilter(['concept','name'],[concepts]);
+		}
+		else list = stlfSort('name');
+		if ($('body').attr('class') == 'catalog') browse();
+	}
+}
+
+function editActivity() {
+	$('body').append('<iframe src="stlf.edit.html"></iframe>');
+	$('iframe').on('load', function() {
+		$('body').css('overflow','hidden');
+	}).css('top',$(window).scrollTop());
+}
+
 $(document).ready(function() {
+	
 	$(window).on('touchstart',function(event) {
 		if (mobile_timer) clearTimeout(mobile_timer);
 		mobile = 1;
@@ -265,6 +361,9 @@ $(document).ready(function() {
 			case 'home':
 				appHome();
 				break;
+			case 'edit':
+				editActivity();
+				break;
 			case 'sort':
 				select_concepts();
 				break;
@@ -288,7 +387,17 @@ $(document).ready(function() {
 				break;
 			default:
 				var $this = $(this);
-				if ($this.hasClass('activity')) show(this.innerHTML);
+				if ($this.parent().is('#fb-login')) {
+					/* Login Method 1 (auto) */
+					FB.Event.unsubscribe('auth.statusChange', updateStatusCallback);
+					FB.Event.subscribe('auth.statusChange', updateStatusCallback);
+					FB.login();	
+					/**/
+					/* Login Method 2 (ask) 
+					FB.getLoginStatus(updateStatusCallback);
+					/**/
+				}
+				else if ($this.hasClass('activity')) show(this.innerHTML);
 				else if ($this.hasClass('song')) song_info(this.innerHTML);
 				else if ($this.hasClass('statement')) statement_info(this.innerHTML);
 				break;
@@ -385,6 +494,19 @@ $(document).ready(function() {
 	$('#browse').one('click',function(event) {
 		document.addEventListener('backbutton', onBackKeyDown, false);
 	});
+	
+	fetchActivities();
+	loadActivities(window.localStorage.getItem('activities'));
+	
+});
+
+document.addEventListener('deviceready',function() {
+	FB.init({
+		appId: '226799687513796',
+		nativeInterface: CDV.FB,
+		useCachedDialogs: false
+	});
+	FB.getLoginStatus(updateStatusCallback);
 });
 
 function onBackKeyDown() {

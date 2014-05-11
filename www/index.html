@@ -6,16 +6,23 @@
     <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <title>Activities Guide</title>
     <link rel="stylesheet" href="css/stlf.css" />
+    
 	<script type="text/javascript" src="cordova.js"></script>
+    
+    <!-- cordova facebook plugin -->
+    <script type="text/javascript" src="cdv-plugin-fb-connect.js"></script>
+    
+    <!-- facebook js sdk -->
+    <script type="text/javascript" src="facebook-js-sdk.js"></script> 
+    
 	<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
 	<script type="text/javascript" src="js/hammer.js"></script>
 	<script type="text/javascript" src="js/jquery.specialevent.hammer.js"></script>
-	<script type="text/javascript" src="js/activities.json"></script>
     <script type="text/javascript" src="js/stlf.js"></script>
 </head>
 
 <body class="front">
-	<h1><img src="img/logo2.png" width="115" height="43" /><br>Activities Guide</h1>
+	<h1><img src="img/logo.png" width="115" height="43" /><br>Activities Guide</h1>
     <div id="bluebar" class="bar">
     	<button type="button" id="browse">Browse</button>
     	<button type="button" id="home">Main</button>
@@ -29,8 +36,11 @@
     <label for="supplies" class="info">Supplies: </label><p id="supplies" class="info"></p>
     <label for="time" class="info">Time: </label><p id="time" class="info"></p>
     <label for="groupsize" class="info">Group Size: </label><p id="groupsize" class="info"></p>
-    <label for="goal" class="info">Goal: </label><p id="goal" class="info"></p>  
-  	<label for="facilitation" class="info">Facilitation: </label><ol id="facilitation" class="info"></ol>
+    <label for="goal" class="info">Goal: </label><p id="goal" class="info"></p>
+    
+    <label for="note" class="info">Note: </label><p id="note" class="info"></p>
+    
+  	<label for="facilitation" class="info info2">Facilitation: </label><ol id="facilitation" class="info info2"></ol>
     
     <label for="debrief" class="info info2">Sample Debrieifing Questions: </label><ol id="debrief" class="info info2"></ol>
     <label for="characteristics" class="info info2">Sample Characteristics: </label><ul id="characteristics" class="info info2"></ul>
