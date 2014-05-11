@@ -39,27 +39,8 @@ button.statement {
 .activity.active, .concept.active, button.song.active, button.statement.active {
 	background-color: #7ef;
 }
-#home,.info,#sort,#cancel,#ok {
+#home,.info,#sort,#cancel,#ok,#edit {
 	display: none;	
-}
-/*#facilitation:before {
-	content: 'Facilitation';
-	text-decoration: underline;
-	position: relative;
-	left: -40px;
-}*/
-#facilitation, #debrief, #characteristics, #statements, #alterations, #songs, #verbal, #questions {
-	margin-left: 0;
-	margin-bottom: 2em;
-}
-#table {
-	margin-left: 25px;
-	margin-top: 8px;
-	margin-bottom: 2em;
-	width: 90%;
-}
-#characteristics, #statements, #alterations, #songs {
-	list-style: none;
 }
 label.info {
 	position: absolute;
@@ -67,13 +48,13 @@ label.info {
 	font-size: 0.9em;
 	font-family: Corbel;
 }
-label.info[for=facilitation], label.info2 {
+label.info2 {
 	position: relative;
 }
 label.info[for=doc] {
 	position: absolute;
 }
-.info {
+.info, #doc {
 	margin-left: 90px;
 }
 #outcomes {
@@ -88,7 +69,20 @@ label.info[for=doc] {
 #outcomes > li:last-of-type:after {
 	content: '';	
 }
-#facilitation > li, #debrief > li, #characteristics > li, #statements > li, #alterations > li, #verbal > li, #questions > li {
+.info2 {
+	margin-left: 0;
+	margin-bottom: 2em;
+}
+#table {
+	margin-left: 25px;
+	margin-top: 8px;
+	margin-bottom: 2em;
+	width: 90%;
+}
+#characteristics, #statements, #alterations, #songs {
+	list-style: none;
+}
+.info2 > li {
 	margin-bottom: 1em;
 }
 #songs > li, #statements > li.statement {
@@ -170,7 +164,7 @@ h1 {
 	border-width: 1px;
 }
 /* Right Buttons */
-#bluebar > #sort, #bluebar > #ok, .right {
+#bluebar > #sort, #bluebar > #ok, #bluebar > #edit, .right {
 	float: right;
 	border-width: 0 0 0 1px;	
 }
@@ -264,4 +258,37 @@ table {
 	height: 2em;
 	padding: 2px 14px;
 	text-align: center;
+}
+
+#fb-login {
+	text-align: center;
+	line-height: 1.5;
+}
+#fb-login > button {
+	color: #FFF;
+	background-color: #4C66A4;
+	background-image: url('../img/fb.png');
+	background-repeat: no-repeat;
+	background-position: 5px center;
+	border: 0;
+	border-radius: 3px;
+	padding: 5px 5px 5px 25px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	cursor: pointer;
+}
+#fb-login > button.hover {
+	background-color: #3B5998;
+}
+
+iframe {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border: 0;
+	margin: 0;
+	padding: 0;	
 }
