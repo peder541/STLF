@@ -498,6 +498,7 @@ $(document).ready(function() {
 	
 	fetchActivities();
 	loadActivities(window.localStorage.getItem('activities'));
+	alert('hi');
 	
 });
 
