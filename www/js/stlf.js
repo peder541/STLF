@@ -511,6 +511,10 @@ document.addEventListener('deviceready',function() {
 
 function onBackKeyDown() {
     // Handle the back button
+	if ($('iframe').index() != -1) {
+		$('iframe').remove();
+		return true;	
+	}
 	switch ($('body').attr('class')) {
 		case 'front':
 			navigator.app.exitApp();
