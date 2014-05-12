@@ -395,7 +395,7 @@ $(document).ready(function() {
 						} else {
 						alert('not logged in');
 						}
-						});
+						},{ scope: "public_profile" });
 						
 						return false;
 					
