@@ -315,7 +315,7 @@ function loadActivities(result) {
 }
 
 function editActivity() {
-	$('body').append('<iframe src="stlf.edit.html"></iframe>');
+	$('body').append('<iframe src="https://www.okeebo.com/stlf/stlf.edit.html"></iframe>');
 	$('iframe').on('load', function() {
 		$('body').css('overflow','hidden');
 	}).css('top',$(window).scrollTop());
