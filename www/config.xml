@@ -7,6 +7,7 @@
     <author email="ben@okeebo.com" href="http://okeebo.com">
         Ben Pedersen
     </author>
+	<icon src="icon.png" />
     <feature name="http://api.phonegap.com/1.0/device" />
 	<preference name="phonegap-version" value="3.3.0" />
 	<preference name="android-minSdkVersion" value="5" />
