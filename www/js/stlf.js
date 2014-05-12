@@ -389,7 +389,6 @@ $(document).ready(function() {
 				var $this = $(this);
 				if ($this.parent().is('#fb-login')) {
 					/* Login Method 1 (auto) */
-					alert('hi');
 					FB.Event.unsubscribe('auth.statusChange', updateStatusCallback);
 					FB.Event.subscribe('auth.statusChange', updateStatusCallback);
 					FB.login();	
@@ -498,7 +497,6 @@ $(document).ready(function() {
 	
 	fetchActivities();
 	loadActivities(window.localStorage.getItem('activities'));
-	alert('hi');
 	
 });
 
