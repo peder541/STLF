@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <title>STLF National Staff - Edit Activities</title>
+    <link rel="stylesheet" href="css/stlf.edit.css" />
+	<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="js/hammer.js"></script>
+	<script type="text/javascript" src="js/jquery.specialevent.hammer.js"></script>
+    <script type="text/javascript" src="js/stlf.edit.js"></script>
+</head>
+
+<body>
+
+	<form action="https://www.okeebo.com/stlf/nash/test.php" method="post">
+    
+    <input type="hidden" name="index" value="">
+    <h2 id="name" contenteditable="true"></h2>
+    
+    <label for="maturity">Maturity: </label>
+    <ul id="maturity">
+    	<li><label><input type="checkbox" name="maturity[]" value="no" />Everyone</label></li>
+        <li><label><input type="checkbox" name="maturity[]" value="ms" />Middle School Tour</label></li>
+        <li><label><input type="checkbox" name="maturity[]" value="hs" />High School Tour</label></li>
+        <li><label><input type="checkbox" name="maturity[]" value="camp" />GAP Camp</label></li>
+        <li><label><input type="checkbox" name="maturity[]" value="college" />College Tour</label></li>
+    </ul>
+        
+    
+    <label for="outcomes">Outcomes: </label>
+    <ul id="outcomes">
+    	<li><label><input type="checkbox" name="outcomes[]" value="Affection for Others" />Affection for Others</label></li>
+        <li><label><input type="checkbox" name="outcomes[]" value="Civic Efficacy" />Civic Efficacy</label></li>
+        <li><label><input type="checkbox" name="outcomes[]" value="Collective Action" />Collective Action</label></li>
+        <li><label><input type="checkbox" name="outcomes[]" value="Leadership" />Leadership</label></li>
+        <li><label><input type="checkbox" name="outcomes[]" value="Leadership Skills" />Leadership Skills</label></li>
+        <li><label><input type="checkbox" name="outcomes[]" value="Public Speaking" />Public Speaking</label></li>
+        <li><label><input type="checkbox" name="outcomes[]" value="Reflection" />Reflection</label></li>
+        <li><label><input type="checkbox" name="outcomes[]" value="Sense of Community" />Sense of Community</label></li>
+        <li><label><input type="checkbox" name="outcomes[]" value="Sense of Individuality" />Sense of Individuality</label></li>
+        <li><label><input type="checkbox" name="outcomes[]" value="Social Awareness" />Social Awareness</label></li>
+        <li><label><input type="checkbox" name="outcomes[]" value="Social Cognition" />Social Cognition</label></li>
+        <li><label><input type="checkbox" name="outcomes[]" value="Warm and Fuzzy" />Warm and Fuzzy</label></li>
+    </ul>
+    
+    <label for="concept">Concept: </label>
+    <ul id="concept">
+    	<li><label><input type="radio" name="concept" value="Diversity" />Diversity</label></li>
+        <li><label><input type="radio" name="concept" value="Icebreakers and Energizers" />Icebreakers and Energizers</label></li>
+        <li><label><input type="radio" name="concept" value="Leadership" />Leadership</label></li>
+        <li><label><input type="radio" name="concept" value="Positive Affirmation/Recognition" />Positive Affirmation/Recognition</label></li>
+        <li><label><input type="radio" name="concept" value="Reflection" />Reflection</label></li>
+        <li><label><input type="radio" name="concept" value="Team Builders" />Team Builders</label></li>
+    </ul>
+    
+    <label for="supplies">Supplies: </label>
+    <p id="supplies" contenteditable="true"></p>
+    
+    <label for="time">Time: </label>
+    <p id="time" contenteditable="true"></p>
+    
+    <label for="groupsize">Group Size: </label>
+    <p id="groupsize" contenteditable="true"></p>
+    
+    <label for="goal">Goal: </label>
+    <p id="goal" contenteditable="true"></p>
+    
+    <label for="note">Note: </label>
+    <p id="note" class="info2" contenteditable="true"></p>
+    
+    <label for="facilitation">Facilitation: </label>
+    <ol id="facilitation" contenteditable="true">
+    	<li><br /></li>
+    </ol>
+    
+    <label for="debrief" class="info2">Sample Debrieifing Questions: </label>
+    <ol id="debrief" contenteditable="true" class="info2"></ol>
+    
+    <label for="characteristics" class="info2">Sample Characteristics: </label>
+    <ul id="characteristics" contenteditable="true" class="info2"></ul>
+    
+    <label for="statements" class="info2">Statements: </label>
+    <ul id="statements" contenteditable="true" class="info2"></ul>
+    
+    <label for="alterations" class="info2">Alterations: </label>
+    <ul id="alterations" contenteditable="true" class="info2"></ul>
+    
+    <label for="songs" class="info2">The variety of songs to choose from: </label>
+    <ul id="songs" contenteditable="true" class="info2"></ul>
+    
+    <label for="verbal" class="info2">Verbal Version: </label>
+    <ol id="verbal" contenteditable="true" class="info2"></ol>
+    
+    <label for="questions" class="info2">Questions: </label>
+    <ol id="questions" contenteditable="true" class="info2"></ol>
+    
+    <div id="buttons">
+    	<input type="button" id="discard" value="Discard" />
+    	<input type="button" id="save" value="Save" />
+    </div>
+    
+    </form>
+    
+</body>
+
+</html>
