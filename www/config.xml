@@ -54,5 +54,6 @@
 		<param name="APP_ID" value="226799687513796" />
 		<param name="APP_NAME" value="STLF Activities Guide" />
 	</gap:plugin>
-    <access origin="*" />
+    <access origin="http://127.0.0.1*" />
+	<access origin="https://www.okeebo.com" subdomains="true" />
 </widget>
