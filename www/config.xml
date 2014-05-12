@@ -50,14 +50,12 @@
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
 	<gap:platform name="android" />
-	<feature name="org.apache.cordova.facebook.Connect">
-		<param name="android-package" value="org.apache.cordova.facebook.ConnectPlugin" />
-	</feature>
 	<gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.4.0">
 		<param name="APP_ID" value="226799687513796" />
 		<param name="APP_NAME" value="STLF Activities Guide" />
 	</gap:plugin>
     <access origin="http://127.0.0.1*" />
-	<access origin="https://www.okeebo.com" subdomains="true"/>
+	<access origin="https://www.okeebo.com" subdomains="true" />
+	<access origin="https://www.facebook.com" subdomains="true" />
 	<gap:plugin name="org.apache.cordova.inappbrowser" />
 </widget>

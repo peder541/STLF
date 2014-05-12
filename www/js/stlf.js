@@ -388,6 +388,7 @@ $(document).ready(function() {
 			default:
 				var $this = $(this);
 				if ($this.parent().is('#fb-login')) {
+					if (FB) alert('hi');
 					/* Login Method 1 (auto) */
 					FB.Event.unsubscribe('auth.statusChange', updateStatusCallback);
 					FB.Event.subscribe('auth.statusChange', updateStatusCallback);
