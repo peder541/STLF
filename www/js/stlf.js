@@ -495,18 +495,18 @@ $(document).ready(function() {
 		document.addEventListener('backbutton', onBackKeyDown, false);
 	});
 	
+	document.addEventListener('deviceready',function() {
+		FB.init({
+			appId: '226799687513796',
+			nativeInterface: CDV.FB,
+			useCachedDialogs: false
+		});
+		FB.getLoginStatus(updateStatusCallback);
+	});
+	
 	fetchActivities();
 	loadActivities(window.localStorage.getItem('activities'));
 	
-});
-
-document.addEventListener('deviceready',function() {
-	FB.init({
-		appId: '226799687513796',
-		nativeInterface: CDV.FB,
-		useCachedDialogs: false
-	});
-	FB.getLoginStatus(updateStatusCallback);
 });
 
 function onBackKeyDown() {
