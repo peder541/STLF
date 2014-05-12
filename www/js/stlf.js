@@ -293,7 +293,7 @@ function fetchActivities(access_token, local_file_flag) {
 			if (local_file_flag) {
 				loadActivities(window.localStorage.getItem('activities'));
 			}
-			else fetchActivities('js/activities.json', true);
+			else fetchActivities('activities.json', true);
 		}
 	});
 }
