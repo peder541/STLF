@@ -512,17 +512,12 @@ $(document).ready(function() {
 });
 
 document.addEventListener('deviceready',function() {
-	try {
-		FB.init({
-			appId: '226799687513796',
-			nativeInterface: CDV.FB,
-			useCachedDialogs: false
-		});
-		FB.getLoginStatus(updateStatusCallback);
-	}
-	catch (e) {
-		alert(e);	
-	}
+	FB.init({
+		appId: '226799687513796',
+		nativeInterface: CDV.FB,
+		useCachedDialogs: false
+	});
+	FB.getLoginStatus(updateStatusCallback);
 });
 
 function onBackKeyDown() {
