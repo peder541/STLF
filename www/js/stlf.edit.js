@@ -150,7 +150,7 @@ function saveActivity() {
 		if (window.top != window.self) {
 			window.top.loadActivities(ACTIVITIES);
 			window.top.show(activity.name);
-			window.top.$('body').css('overflow','');
+			window.top.$('body').css('overflow','').css('height','');
 			window.top.$('iframe').remove();
 		}
 	});

@@ -317,7 +317,7 @@ function loadActivities(result) {
 function editActivity() {
 	$('body').append('<iframe src="stlf.edit.html"></iframe>');
 	$('iframe').on('load', function() {
-		$('body').css('overflow','hidden');
+		$('body').css('overflow','hidden').css('height',window.innerHeight);
 	}).css('top',$(window).scrollTop());
 }
 
@@ -512,6 +512,7 @@ document.addEventListener('deviceready',function() {
 function onBackKeyDown() {
     // Handle the back button
 	if ($('iframe').index() != -1) {
+		$('body').css('overflow','').css('height','');
 		$('iframe').remove();
 		return true;	
 	}
