@@ -388,7 +388,17 @@ $(document).ready(function() {
 			default:
 				var $this = $(this);
 				if ($this.parent().is('#fb-login')) {
-					if (FB) alert(FB.login.toString());
+					
+						FB.login(function(response) {
+						if (response.status === 'connected') {
+						alert('logged in');
+						} else {
+						alert('not logged in');
+						}
+						},{ scope: "email" });
+						
+						return false;
+					
 					/* Login Method 1 (auto) */
 					FB.Event.unsubscribe('auth.statusChange', updateStatusCallback);
 					FB.Event.subscribe('auth.statusChange', updateStatusCallback);
