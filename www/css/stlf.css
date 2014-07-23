@@ -39,7 +39,7 @@ button.statement {
 .activity.active, .concept.active, button.song.active, button.statement.active {
 	background-color: #7ef;
 }
-#home,.info,#sort,#cancel,#ok,#edit {
+#home,.info,#sort,#cancel,#ok,#edit,#addNewActivity {
 	display: none;	
 }
 label.info {
@@ -172,6 +172,16 @@ h1 {
 	background-image: url('../img/gear.png');
 	background-repeat: no-repeat;
 	background-position: center;
+}
+/* Center Buttons */
+#bluebar > #addNewActivity {
+	position: absolute;
+	top: 0;
+	left: 5em;
+	width: 60%;
+	width: calc(100% - 10em);
+	width: -webkit-calc(100% - 10em);
+	border: 0;
 }
 
 #yellow {

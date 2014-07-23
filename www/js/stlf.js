@@ -13,12 +13,19 @@ var mobile_timer;
 var ACTIVITIES = [];
 var CONCEPTS = [
 	'All Activities',
+	/*
+	// Old Activites
 	'Diversity',
 	'Icebreakers and Energizers',
 	'Leadership',
 	'Positive Affirmation/Recognition',
 	'Reflection',
-	'Team Builders'
+	*/
+	/*  New Categories:	*/
+	'Icebreakers',
+	'Reflective',
+	'Team Builders',
+	'Transitions'
 ];
 
 function stlfSort(type,array) {
@@ -57,6 +64,9 @@ function stlfFilter(type,value,array) {
 			return false;
 		}
 	}
+	else if (type == 'songs' || type == 'statements') {
+		for (var j=0; j < array.length; ++j) if (!array[j][type] || array[j][type].length) array.splice(j--,1);
+	}
 	else if (typeof(type) === 'string') {
 		if (typeof(value) !== 'object') {
 			for (var j=0; j < array.length; ++j) if (array[j][type] != value) array.splice(j--,1);
@@ -94,7 +104,7 @@ function change_concept(direction) {
 function select_concepts() {
 	$('body').attr('class','settings');
 	$('.activity').remove();
-	$('#home,#sort').hide();
+	$('#home,#addNewActivity,#sort').hide();
 	$('#ok,#cancel').show();
 	var $h2 = $('h2');
 	$h2.before('<p id="select_concepts">Select which activity types you want listed:</p>');
@@ -114,7 +124,7 @@ function browse(type,value) {
 	$('body').attr('class','catalog');
 	$('.activity').remove();
 	$('h1,#browse,.info,#edit,#fb-login').hide();
-	$('#home,#sort').show();
+	$('#home,#addNewActivity,#sort').show();
 	if (type) {
 		if (typeof(value) === 'undefined') list = stlfSort(type);
 		else list = stlfFilter(type,value);
@@ -124,7 +134,7 @@ function browse(type,value) {
 }
 function appHome() {
 	$('.activity').remove();
-	$('#home,.info,#edit,#sort').hide();
+	$('#home,.info,#edit,#addNewActivity,#sort').hide();
 	$('body').attr('class','front');
 	$('h1,#browse,#fb-login').show();
 	resize_front();
@@ -145,9 +155,9 @@ function show(name) {
 	$('body').attr('class','detail');
 	$('.activity').remove();
 	$('#browse,.info,#edit').show();
-	$('#home,#sort,.info2').hide();
+	$('#home,#addNewActivity,#sort,.info2').hide();
 	$(window).scrollTop(0);
-	var activity = stlfFilter('name',name)[0];
+	var activity = (typeof(name) === 'object') ? name : stlfFilter('name',name)[0];
 		
 	$('#name').html(activity.name);
 	$('#outcomes').empty();
@@ -196,10 +206,10 @@ function show(name) {
 }
 
 function song_info(song) {
-	var activity = stlfFilter('name','Repeat-After-Me Songs')[0];
+	var activity = stlfFilter('songs')[0];
 	var data = activity.songs[song];
-	$('.info,#edit').hide();
-	$('#name').html(song).show();
+	$('.info').hide();
+	$('#name').html(song).add('#edit').show();
 	$('#browse').html('Songs');
 	$('#name').after('<div id="lyrics"></div>');
 	$('body').attr('class','song_info');
@@ -208,7 +218,7 @@ function song_info(song) {
 }
 
 function change_song(direction) {
-	var activity = stlfFilter('name','Repeat-After-Me Songs')[0];
+	var activity = stlfFilter('songs')[0];
 	var songs = Object.keys(activity.songs).sort();
 	var index = songs.indexOf($('#name').html()) + direction;
 	if (index == songs.length) index = 0;
@@ -224,10 +234,10 @@ function change_song(direction) {
 }
 
 function statement_info(statement) {
-	var activity = stlfFilter('name','Human Connection')[0];
+	var activity = stlfFilter('statements')[0];
 	var data = activity.statements[statement];
-	$('.info,#edit').hide();
-	$('#name').html(statement).show().css('text-align','left');
+	$('.info').hide();
+	$('#name').html(statement).css('text-align','left').add('#edit').show();
 	$('#browse').html('Statements').css('width','auto');
 	$('#name').after('<div id="lyrics"></div>');
 	$('body').attr('class','statement_info');
@@ -236,7 +246,7 @@ function statement_info(statement) {
 }
 
 function change_statement(direction) {
-	var activity = stlfFilter('name','Human Connection')[0];
+	var activity = stlfFilter('statements')[0];
 	var statements = Object.keys(activity.statements);
 	var index = statements.indexOf($('#name').html()) + direction;
 	if (index == statements.length) index = 0;
@@ -257,15 +267,21 @@ function updateStatusCallback(response, ghost) {
 			$('#fb-login').remove();
 			fetchActivities(FB.getAccessToken());
 			$.get('https://www.okeebo.com/stlf/activities/access.php?access_token=' + FB.getAccessToken(), function(result) {
+				if (result.replace(/\s+/g,'') == 'NationalStaff') {
+					result = '<a href="https://www.okeebo.com/stlf/nash" target="_blank">National Staff</a>';
+					$('#bluebar').append('<button id="edit">Edit</button>');
+					$('#bluebar').append('<button id="addNewActivity">Add New Activity</button>');
+				}
 				$('body').append('<div id="fb-login">Access: ' + result + '</div>');
-				if (result.replace(/\s+/g,'') == 'NationalStaff') $('#bluebar').append('<button id="edit">Edit</button>');
 				if ($('body').attr('class') == 'front') resize_front();
+				else $('#fb-login').hide();
 			});
 			break;
 		default:
 			/* Login Method 1 (auto) */
 			$('body').append('<div id="fb-login"><button>Log in</button></div>');
 			if ($('body').attr('class') == 'front') resize_front();
+			else $('#fb-login').hide();
 			/**/
 			/* Login Method 2 (ask) 
 			if (!ghost) FB.login(function(response) { updateStatusCallback(response, true); });
@@ -293,7 +309,7 @@ function fetchActivities(access_token, local_file_flag) {
 			if (local_file_flag) {
 				loadActivities(window.localStorage.getItem('activities'));
 			}
-			else fetchActivities('js/activities.json', true);
+			else fetchActivities('activities.json', true);
 		}
 	});
 }
@@ -314,8 +330,11 @@ function loadActivities(result) {
 	}
 }
 
-function editActivity() {
-	$('body').append('<iframe src="stlf.edit.html"></iframe>');
+function editActivity(newActivity) {
+	if (newActivity) {
+		$('#name').html('');	
+	}
+	$('body').append('<iframe src="stlf.edit.html' + ($('body').attr('class') != 'detail' ? '#' + $('body').attr('class') : '') + '"></iframe>');
 	$('iframe').on('load', function() {
 		$('body').css('overflow','hidden');
 	}).css('top',$(window).scrollTop());
@@ -348,12 +367,12 @@ $(document).ready(function() {
 					$('#browse').html('Browse').css('width','');
 					$('#lyrics').remove();
 					if ($('body').attr('class') == 'song_info') {
-						show('Repeat-After-Me Songs');
+						show(stlfFilter('songs')[0]);
 						$(window).scrollTop($('label[for="songs"]').offset().top);
 					}
 					else {
 						$('#name').css('text-align','');
-						show('Human Connection');
+						show(stlfFilter('statements')[0]);
 						$(window).scrollTop($('label[for="statements"]').offset().top);
 					}
 				}
@@ -363,6 +382,9 @@ $(document).ready(function() {
 				break;
 			case 'edit':
 				editActivity();
+				break;
+			case 'addNewActivity':
+				editActivity(true);
 				break;
 			case 'sort':
 				select_concepts();
@@ -391,7 +413,7 @@ $(document).ready(function() {
 					/* Login Method 1 (auto) */
 					FB.Event.unsubscribe('auth.statusChange', updateStatusCallback);
 					FB.Event.subscribe('auth.statusChange', updateStatusCallback);
-					FB.login(null, { scope: 'public_profile' } );	
+					FB.login(null, { scope: 'public_profile' } );
 					/**/
 					/* Login Method 2 (ask) 
 					FB.getLoginStatus(updateStatusCallback);
@@ -475,11 +497,11 @@ $(document).ready(function() {
 					show(appData);
 					break;
 				case 'song_info':
-					show('Repeat-After-Me Songs');
+					show(stlfFilter('songs')[0]);
 					song_info(appData);
 					break;
 				case 'statement_info':
-					show('Human Connection');
+					show(stlfFilter('statements')[0]);
 					statement_info(appData);
 					break;
 				case 'settings':
@@ -495,6 +517,7 @@ $(document).ready(function() {
 		document.addEventListener('backbutton', onBackKeyDown, false);
 	});
 	
+	/* Phonegap *//*
 	document.addEventListener('deviceready',function() {
 		FB.init({
 			appId: '226799687513796',
@@ -503,6 +526,22 @@ $(document).ready(function() {
 		});
 		FB.getLoginStatus(updateStatusCallback);
 	});
+	/**/
+	/* Online */
+	$.ajaxSetup({ cache: true });
+	$.getScript('//connect.facebook.net/en_UK/all.js', function(){
+		FB.init({
+			appId: '226799687513796',
+		});
+		//	Login Method 1 (auto)
+		FB.getLoginStatus(updateStatusCallback);
+		//
+		// Login Method 2 (ask) 
+		//$('body').append('<div id="fb-login"><button>Log in</button></div>');
+		//resize_front();
+		//
+	});
+	/**/
 	
 	fetchActivities();
 	loadActivities(window.localStorage.getItem('activities'));
@@ -531,12 +570,12 @@ function onBackKeyDown() {
 			break;
 		case 'song_info':
 			$('#lyrics').remove();
-			show('Repeat-After-Me Songs');
+			show(stlfFilter('songs')[0]);
 			break;
 		case 'statement_info':
 			$('#lyrics').remove();
 			$('#name').css('text-align','');
-			show('Human Connection');
+			show(stlfFilter('statements')[0]);
 			break;
 	}
 }
