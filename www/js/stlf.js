@@ -517,7 +517,7 @@ $(document).ready(function() {
 		document.addEventListener('backbutton', onBackKeyDown, false);
 	});
 	
-	/* Phonegap *//*
+	/* Phonegap */
 	document.addEventListener('deviceready',function() {
 		FB.init({
 			appId: '226799687513796',
@@ -527,7 +527,7 @@ $(document).ready(function() {
 		FB.getLoginStatus(updateStatusCallback);
 	});
 	/**/
-	/* Online */
+	/* Online *//*
 	$.ajaxSetup({ cache: true });
 	$.getScript('//connect.facebook.net/en_UK/all.js', function(){
 		FB.init({
