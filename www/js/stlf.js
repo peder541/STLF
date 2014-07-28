@@ -306,10 +306,9 @@ function fetchActivities(access_token, local_file_flag) {
 			window.localStorage.setItem('activities',JSON.stringify(result));
 		},
 		error: function(result){
-			if (local_file_flag) {
-				loadActivities(window.localStorage.getItem('activities'));
+			if (!local_file_flag && ACTIVITIES.length == 0) {
+				fetchActivities('activities.json', true);
 			}
-			else fetchActivities('activities.json', true);
 		}
 	});
 }
@@ -413,7 +412,16 @@ $(document).ready(function() {
 					/* Login Method 1 (auto) */
 					FB.Event.unsubscribe('auth.statusChange', updateStatusCallback);
 					FB.Event.subscribe('auth.statusChange', updateStatusCallback);
-					FB.login(null, { scope: 'public_profile' } );
+					if (window.navigator && window.navigator.standalone) {
+						var url = 'https://www.facebook.com/dialog/oauth';
+						url += '?client_id=226799687513796';
+						url += '&redirect_uri=' + document.location.href;
+						url += '&scope=public_profile';
+						window.open(url, '', null); 
+					}
+					else {
+						FB.login(null, { scope: 'public_profile' });
+					}
 					/**/
 					/* Login Method 2 (ask) 
 					FB.getLoginStatus(updateStatusCallback);
@@ -480,36 +488,6 @@ $(document).ready(function() {
 			}
 		}
 	});
-	// Apple Standalone App return to last screen
-	if (window.navigator.standalone) {
-		window.localStorage.removeItem('bodyHTML');
-		var concepts = window.localStorage.getItem('concepts');
-		if (concepts) browse(['concept','name'],[JSON.parse(concepts)]);
-		else browse('name');
-		var appScreen = window.localStorage.getItem('screen');
-		if (appScreen) {
-			var appData = window.localStorage.getItem('data');
-			switch(appScreen) {
-				case 'front':
-					appHome();
-					break;
-				case 'detail':
-					show(appData);
-					break;
-				case 'song_info':
-					show(stlfFilter('songs')[0]);
-					song_info(appData);
-					break;
-				case 'statement_info':
-					show(stlfFilter('statements')[0]);
-					statement_info(appData);
-					break;
-				case 'settings':
-					select_concepts();
-					break;
-			}
-		}
-	}
 	
 	if ($('body').attr('class') == 'front') resize_front();
 
@@ -545,6 +523,36 @@ $(document).ready(function() {
 	
 	fetchActivities();
 	loadActivities(window.localStorage.getItem('activities'));
+	
+	// Apple Standalone App return to last screen
+	if (window.navigator.standalone) {
+		var concepts = window.localStorage.getItem('concepts');
+		if (concepts) browse(['concept','name'],[JSON.parse(concepts)]);
+		else browse('name');
+		var appScreen = window.localStorage.getItem('screen');
+		if (appScreen) {
+			var appData = window.localStorage.getItem('data');
+			switch(appScreen) {
+				case 'front':
+					appHome();
+					break;
+				case 'detail':
+					show(appData);
+					break;
+				case 'song_info':
+					show(stlfFilter('songs')[0]);
+					song_info(appData);
+					break;
+				case 'statement_info':
+					show(stlfFilter('statements')[0]);
+					statement_info(appData);
+					break;
+				case 'settings':
+					select_concepts();
+					break;
+			}
+		}
+	}
 	
 });
 
