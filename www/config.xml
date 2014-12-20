@@ -50,7 +50,7 @@
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
 	<gap:platform name="android" />
-	<gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.4.0">
+	<gap:plugin name="com.phonegap.plugins.facebookconnect">
 		<param name="APP_ID" value="226799687513796" />
 		<param name="APP_NAME" value="STLF Activities Guide" />
 	</gap:plugin>
