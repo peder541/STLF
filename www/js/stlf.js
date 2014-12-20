@@ -261,31 +261,31 @@ function change_statement(direction) {
 	$(window).scrollTop(0);
 }
 
-function updateStatusCallback(response, ghost) {
+function updateStatusCallback(response) {
 	switch (response.status) {
 		case 'connected':
 			$('#fb-login').remove();
-			fetchActivities(FB.getAccessToken());
-			$.get('https://www.okeebo.com/stlf/activities/access.php?access_token=' + FB.getAccessToken(), function(result) {
-				if (result.replace(/\s+/g,'') == 'NationalStaff') {
-					result = '<a href="https://www.okeebo.com/stlf/nash" target="_blank">National Staff</a>';
-					$('#bluebar').append('<button id="edit">Edit</button>');
-					$('#bluebar').append('<button id="addNewActivity">Add New Activity</button>');
-				}
-				$('body').append('<div id="fb-login">Access: ' + result + '</div>');
-				if ($('body').attr('class') == 'front') resize_front();
-				else $('#fb-login').hide();
-			});
+            facebookConnectPlugin(function(token) {
+                fetchActivities(token);
+                $.get('https://www.okeebo.com/stlf/activities/access.php?access_token=' + token, function(result) {
+                    if (result.replace(/\s+/g,'') == 'NationalStaff') {
+                        result = '<a href="https://www.okeebo.com/stlf/nash" target="_blank">National Staff</a>';
+                        $('#bluebar').append('<button id="edit">Edit</button>');
+                        $('#bluebar').append('<button id="addNewActivity">Add New Activity</button>');
+                    }
+                    $('body').append('<div id="fb-login">Access: ' + result + '</div>');
+                    if ($('body').attr('class') == 'front') resize_front();
+                    else $('#fb-login').hide();
+                });
+            }, function(err) {
+                console.log("Could not get access token: " + err);
+            });
 			break;
 		default:
 			/* Login Method 1 (auto) */
 			$('body').append('<div id="fb-login"><button>Log in</button></div>');
 			if ($('body').attr('class') == 'front') resize_front();
 			else $('#fb-login').hide();
-			/**/
-			/* Login Method 2 (ask) 
-			if (!ghost) FB.login(function(response) { updateStatusCallback(response, true); });
-			/**/
 			break;
 	}
 }
@@ -410,8 +410,6 @@ $(document).ready(function() {
 				var $this = $(this);
 				if ($this.parent().is('#fb-login')) {
 					/* Login Method 1 (auto) */
-					FB.Event.unsubscribe('auth.statusChange', updateStatusCallback);
-					FB.Event.subscribe('auth.statusChange', updateStatusCallback);
 					if (window.navigator && window.navigator.standalone) {
 						var url = 'https://www.facebook.com/dialog/oauth';
 						url += '?client_id=226799687513796';
@@ -420,12 +418,10 @@ $(document).ready(function() {
 						window.open(url, '', null); 
 					}
 					else {
-						FB.login(null, { scope: 'public_profile' });
+						facebookConnectPlugin.login(['public_profile'], updateStatusCallback, function(err) {
+                            console.log("Could not log in: " + err);
+                        });
 					}
-					/**/
-					/* Login Method 2 (ask) 
-					FB.getLoginStatus(updateStatusCallback);
-					/**/
 				}
 				else if ($this.hasClass('activity')) show(this.innerHTML);
 				else if ($this.hasClass('song')) song_info(this.innerHTML);
@@ -497,12 +493,9 @@ $(document).ready(function() {
 	
 	/* Phonegap */
 	document.addEventListener('deviceready',function() {
-		FB.init({
-			appId: '226799687513796',
-			nativeInterface: CDV.FB,
-			useCachedDialogs: false
-		});
-		FB.getLoginStatus(updateStatusCallback);
+		facebookConnectPlugin.getLoginStatus(updateStatusCallback, function(err) {
+            console.log("Couldn't get login status: " + err);
+        });
 	});
 	/**/
 	/* Online *//*
@@ -513,11 +506,6 @@ $(document).ready(function() {
 		});
 		//	Login Method 1 (auto)
 		FB.getLoginStatus(updateStatusCallback);
-		//
-		// Login Method 2 (ask) 
-		//$('body').append('<div id="fb-login"><button>Log in</button></div>');
-		//resize_front();
-		//
 	});
 	/**/
 	
