@@ -265,20 +265,17 @@ function updateStatusCallback(response) {
 	switch (response.status) {
 		case 'connected':
 			$('#fb-login').remove();
-            facebookConnectPlugin(function(token) {
-                fetchActivities(token);
-                $.get('https://www.okeebo.com/stlf/activities/access.php?access_token=' + token, function(result) {
-                    if (result.replace(/\s+/g,'') == 'NationalStaff') {
-                        result = '<a href="https://www.okeebo.com/stlf/nash" target="_blank">National Staff</a>';
-                        $('#bluebar').append('<button id="edit">Edit</button>');
-                        $('#bluebar').append('<button id="addNewActivity">Add New Activity</button>');
-                    }
-                    $('body').append('<div id="fb-login">Access: ' + result + '</div>');
-                    if ($('body').attr('class') == 'front') resize_front();
-                    else $('#fb-login').hide();
-                });
-            }, function(err) {
-                console.log("Could not get access token: " + err);
+            var token = response.authResponse.accessToken;
+            fetchActivities(token);
+            $.get('https://www.okeebo.com/stlf/activities/access.php?access_token=' + token, function(result) {
+                if (result.replace(/\s+/g,'') == 'NationalStaff') {
+                    result = '<a href="https://www.okeebo.com/stlf/nash" target="_blank">National Staff</a>';
+                    $('#bluebar').append('<button id="edit">Edit</button>');
+                    $('#bluebar').append('<button id="addNewActivity">Add New Activity</button>');
+                }
+                $('body').append('<div id="fb-login">Access: ' + result + '</div>');
+                if ($('body').attr('class') == 'front') resize_front();
+                else $('#fb-login').hide();
             });
 			break;
 		default:
@@ -493,9 +490,11 @@ $(document).ready(function() {
 	
 	/* Phonegap */
 	document.addEventListener('deviceready',function() {
-		facebookConnectPlugin.getLoginStatus(updateStatusCallback, function(err) {
-            console.log("Couldn't get login status: " + err);
-        });
+        if (window.facebookConnectPlugin) {
+            facebookConnectPlugin.getLoginStatus(updateStatusCallback, function(err) {
+                console.log("Couldn't get login status: " + err);
+            });
+        }
 	});
 	/**/
 	/* Online *//*
