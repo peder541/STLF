@@ -50,33 +50,25 @@ $(document).ready(function() {
 		else loadActivity(window.top.$('#name').html());	
 	}
 	else {
-		$.ajax({
-			async: true,
-			dataType: "json",
-			url: 'activities.json',
-			mimeType: "application/json",
-			success: function(result){
-				ACTIVITIES = result;
-			}
-		});
-		
 		$.ajaxSetup({ cache: true });
-		$.getScript('//connect.facebook.net/en_UK/all.js', function(){
-				FB.init({
-						appId: '226799687513796',
-				});
-				FB.getLoginStatus(function() {
-					$.ajax({
-						async: true,
-						dataType: "json",
-						url: 'https://www.okeebo.com/stlf/activities/?access_token=' + ((window.FB) ? FB.getAccessToken() : ''),
-						mimeType: "application/json",
-						success: function(result){
-							ACTIVITIES = result;
-						}
-					});	
-				});
-		});
+        $.getScript('js/facebookConnectPlugin.js', function() {
+            $.getScript('https://connect.facebook.net/en_UK/all.js', function(){
+                FB.init({
+                    appId: '226799687513796',
+                });
+                FB.getLoginStatus(function() {
+                    $.ajax({
+                        async: true,
+                        dataType: "json",
+                        url: 'https://www.okeebo.com/stlf/activities/?access_token=' + ((window.FB) ? FB.getAccessToken() : ''),
+                        mimeType: "application/json",
+                        success: function(result){
+                            ACTIVITIES = result;
+                        }
+                    });	
+                });
+            });
+        });
 	}
 
 });
@@ -113,15 +105,20 @@ function saveStatement(statement) {
 	activity.statements[new_name] = statement;
 	
 	ACTIVITIES[index] = activity;
-	$.post('https://www.okeebo.com/stlf/activities/test.php?access_token=' + window.top.FB.getAccessToken() + '&index=' + index, $.param(activity)).always(function() {
-		if (window.top != window.self) {
-			window.top.loadActivities(ACTIVITIES);
-			window.top.$('#lyrics').remove();
-			window.top.statement_info(new_name);
-			window.top.$('body').css('overflow','');
-			window.top.$('iframe').remove();
-		}
-	});
+    var callback = function(token) {
+        $.post('https://www.okeebo.com/stlf/activities/test.php?access_token=' + token + '&index=' + index, $.param(activity)).always(function() {
+            if (window.top != window.self) {
+                window.top.loadActivities(ACTIVITIES);
+                window.top.$('#lyrics').remove();
+                window.top.statement_info(new_name);
+                window.top.$('body').css('overflow','');
+                window.top.$('iframe').remove();
+            }
+        });
+    };
+    window.top.facebookConnectPlugin.getAccessToken(callback, function(err) {
+        console.log("Couldn't get token: " + err);
+    });
 }
 // can probably merge loadStatement() with loadSong() and merge saveStatement() with saveSong()
 function loadSong(song) {
@@ -159,15 +156,20 @@ function saveSong() {
 	activity.songs[new_name] = song;
 	
 	ACTIVITIES[index] = activity;
-	$.post('https://www.okeebo.com/stlf/activities/test.php?access_token=' + window.top.FB.getAccessToken() + '&index=' + index, $.param(activity)).always(function() {
-		if (window.top != window.self) {
-			window.top.loadActivities(ACTIVITIES);
-			window.top.$('#lyrics').remove();
-			window.top.song_info(new_name);
-			window.top.$('body').css('overflow','');
-			window.top.$('iframe').remove();
-		}
-	});
+	var callback = function(token) {
+        $.post('https://www.okeebo.com/stlf/activities/test.php?access_token=' + token + '&index=' + index, $.param(activity)).always(function() {
+            if (window.top != window.self) {
+                window.top.loadActivities(ACTIVITIES);
+                window.top.$('#lyrics').remove();
+                window.top.song_info(new_name);
+                window.top.$('body').css('overflow','');
+                window.top.$('iframe').remove();
+            }
+        });
+    };
+    window.top.facebookConnectPlugin.getAccessToken(callback, function(err) {
+        console.log("Couldn't get token: " + err);
+    });
 }
 
 function loadActivity(activity) {
@@ -255,16 +257,21 @@ function saveActivity() {
 	if (!activity.maturity) activity.maturity = ['depreciated'];
 	else if (activity.maturity[0] == 'no') delete activity.maturity;
 	ACTIVITIES[index] = activity;
-	$.post('https://www.okeebo.com/stlf/activities/test.php?access_token=' + window.top.FB.getAccessToken() + '&index=' + index, $.param(activity)).always(function() {
-		if (window.top != window.self) {
-			window.top.loadActivities(ACTIVITIES);
-			if (window.top.$('#name').html() != '') {
-				window.top.show(activity.name);
-			}
-			window.top.$('body').css('overflow','');
-			window.top.$('iframe').remove();
-		}
-	});
+    var callback = function(token) {
+        $.post('https://www.okeebo.com/stlf/activities/test.php?access_token=' + token + '&index=' + index, $.param(activity)).always(function() {
+            if (window.top != window.self) {
+                window.top.loadActivities(ACTIVITIES);
+                if (window.top.$('#name').html() != '') {
+                    window.top.show(activity.name);
+                }
+                window.top.$('body').css('overflow','');
+                window.top.$('iframe').remove();
+            }
+        });
+    };
+    window.top.facebookConnectPlugin.getAccessToken(callback, function(err) {
+        console.log("Couldn't get token: " + err);
+    });
 	return activity;
 }
 
